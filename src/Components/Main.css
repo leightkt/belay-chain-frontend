@@ -1,0 +1,8 @@
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0;
+    padding: 4rem;
+}
