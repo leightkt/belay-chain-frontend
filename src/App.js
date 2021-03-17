@@ -4,6 +4,8 @@ import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Main from './Components/Main';
 
+
+
 class App extends Component {
 	state = {
 		user: {
@@ -12,12 +14,22 @@ class App extends Component {
 		},
 		certifications: []
 	}
+	
+	setRole = (role) => {
+		this.setState({ user: { role } })
+	}
+
+	setUserID = (id) => {
+		this.setState({ user: { id }})
+	}
+
+	
 
 	render() {
 		return (
 		<div className="App">
 			<Header	/>
-			<Main	/>
+			<Main	setRole={ this.setRole } role={ this.state.user.role } setUserID={ this.setUserID }/>
 			<Footer	/>
 		</div>
 		);

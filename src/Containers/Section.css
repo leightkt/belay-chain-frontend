@@ -1,0 +1,11 @@
+section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+button {
+    margin: 4rem 4rem;
+}

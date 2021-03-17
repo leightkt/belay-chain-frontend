@@ -1,12 +1,15 @@
+import Section from '../Containers/Section'
+import LoginForm from './LoginForm'
 import './Main.css'
 
-function Main () {
+function Main ({ setRole, role, setUserID }) {
 
     return(
         <main>
-            <button>GYM</button>
-            <button>MEMBER</button>
-            <button>ADMINISTRATOR</button>
+            {role
+            ? <LoginForm  role={ role } setUserID={ setUserID }/>
+            : <Section setRole={ setRole } />
+            }
         </main>
     )
 }
