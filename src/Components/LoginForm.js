@@ -112,7 +112,7 @@ class LoginForm extends Component {
                             }
                         </form>
                     :
-                    <SignUpForm setUserID={ this.props.setUserID }/>
+                    <SignUpForm setUser={ this.props.setUser }/>
                 }
                 
 
