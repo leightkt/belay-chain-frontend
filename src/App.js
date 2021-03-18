@@ -2,9 +2,10 @@ import './App.css';
 import { Component } from 'react'
 import Header from './Components/Header';
 import Footer from './Components/Footer';
-import Main from './Components/Main';
+import LoginContainer from './Containers/LogInContainer';
+import Profile from './Profile';
 
-
+const backendUsersURL = 'http://localhost:9000/'
 
 class App extends Component {
 	state = {
@@ -14,7 +15,24 @@ class App extends Component {
 		},
 		certifications: []
 	}
+
+	componentDidMount() {
+		this.authoriz_user()
+	}
 	
+	authoriz_user = () => {
+		fetch(`${backendUsersURL}profile`, {
+			method: "GET",
+			headers: {
+				"Authorization": `Bearer ${localStorage.token}`
+			}
+		})
+		.then(response => response.json())
+		.then(data => {
+			this.setUser(data.user)
+		})
+	}
+
 	setRole = (role) => {
 		this.setState({ user: { role } })
 	}
@@ -40,13 +58,21 @@ class App extends Component {
 		return (
 		<div className="App">
 			<Header	/>
-			<Main	setRole={ this.setRole } role={ this.state.user.role } setUser={ this.setUser }/>
+			<main>
+				{
+					this.state.user.id
+					?
+					<Profile />
+					:
+					<LoginContainer	setRole={ this.setRole } role={ this.state.user.role } setUser={ this.setUser }/>
+				}
 			{
 				this.state.user.id
 				? <button onClick={ this.logOut }>LOG OUT</button>
 				: null
 			}
 			<Footer	/>
+			</main>
 		</div>
 		);
 	}
