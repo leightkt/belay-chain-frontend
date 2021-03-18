@@ -23,6 +23,17 @@ class App extends Component {
 		this.setState({ user: { id }})
 	}
 
+	logOut = () => {
+		localStorage.removeItem('token')
+		this.setState({
+			user: {
+				id: "",
+				role: ""
+			},
+			certifications: []
+		})
+	}
+
 	
 
 	render() {
@@ -30,6 +41,11 @@ class App extends Component {
 		<div className="App">
 			<Header	/>
 			<Main	setRole={ this.setRole } role={ this.state.user.role } setUserID={ this.setUserID }/>
+			{
+				this.state.user.id
+				? <button onClick={ this.logOut }>LOG OUT</button>
+				: null
+			}
 			<Footer	/>
 		</div>
 		);

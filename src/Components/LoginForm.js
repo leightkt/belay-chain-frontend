@@ -10,7 +10,8 @@ class LoginForm extends Component {
         password: "",
         email: "",
         signup: false,
-        role: this.props.role
+        role: this.props.role, 
+        errors: ""
     }
 
     
@@ -39,7 +40,6 @@ class LoginForm extends Component {
 
     login = (event) => {
         event.preventDefault()
-        console.log("hit")
         let data = {}
 
         if (this.state.role === "admin") {
@@ -65,12 +65,23 @@ class LoginForm extends Component {
             })
 		})
             .then(response => response.json())
-            .then(console.log)
+            .then(data => {
+                if (data.errors) {
+                    this.setState({ errors: data.errors })
+                } else {
+                    this.setState({
+                        username: "",
+                        password: "",
+                        email: "",
+                        signup: false,
+                        role: "",
+                        errors: ""
+                    })
+                    this.props.setUserID(data.user.id)
+                    localStorage.setItem('token', data.token)
+                }
+            })
 	}
-
-    signup = () => {
-
-    }
 
 
     render() {
@@ -81,30 +92,34 @@ class LoginForm extends Component {
                     ?
                         <form onSubmit={ this.login }>
                             { this.state.role === "admin"
-                            ?   <>
-                                    <label>Username:</label>
-                                    <input type="text" name="username" value={ this.state.username } onChange={ this.handleChange } placeholder="USERNAME"/>
-                                </>
-                            :   <>
-                                    <label>Email:</label>
-                                    <input type="email" name="email" value={ this.state.email } onChange={ this.handleChange } placeholder="EMAIL"/>
-                                </>
+                                ?   <>
+                                        <label>Username:</label>
+                                        <input type="text" name="username" value={ this.state.username } onChange={ this.handleChange } placeholder="USERNAME"/>
+                                    </>
+                                :   <>
+                                        <label>Email:</label>
+                                        <input type="email" name="email" value={ this.state.email } onChange={ this.handleChange } placeholder="EMAIL"/>
+                                    </>
                             }
                             
                             <label>Password:</label>
                             <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } placeholder="PASSWORD"/>
                             <input type="submit" value="LOG IN" />
+                            { this.state.errors
+                                ? <p>{ this.state.errors }</p>
+                                : null
+                            }
                         </form>
                     :
-                    <SignUpForm />
+                    <SignUpForm setUserID={ this.props.setUserID }/>
                 }
                 
 
                 { this.state.role === "gym"
-                ? 
-                    <button onClick={ this.handleClick }>{ this.state.signup ? "LOG IN" : "SIGN UP" }</button>
-                : 
-                    null
+                    ? 
+                        <button onClick={ this.handleClick }>{ this.state.signup ? "LOG IN" : "SIGN UP" }</button>
+                    : 
+                        null
                 }
                 <button onClick={() => this.props.setRole("")}>HOME</button>
             </div>
