@@ -4,7 +4,7 @@ function Footer () {
 
     return(
         <footer>
-            <p>Certified Catches</p>
+            <p>About the Dev</p>
         </footer>
     )
 }

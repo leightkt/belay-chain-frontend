@@ -7,7 +7,7 @@ function Main ({ setRole, role, setUserID }) {
     return(
         <main>
             {role
-            ? <LoginForm  role={ role } setUserID={ setUserID }/>
+            ? <LoginForm  role={ role } setUserID={ setUserID } setRole={ setRole }/>
             : <Section setRole={ setRole } />
             }
         </main>
