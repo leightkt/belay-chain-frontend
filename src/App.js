@@ -10,7 +10,7 @@ class App extends Component {
 	state = {
 		user: {
 			id: "",
-			role: ""
+			role: "",
 		},
 		certifications: []
 	}
@@ -19,8 +19,8 @@ class App extends Component {
 		this.setState({ user: { role } })
 	}
 
-	setUserID = (id) => {
-		this.setState({ user: { id }})
+	setUser = (user) => {
+		this.setState({ user })
 	}
 
 	logOut = () => {
@@ -40,7 +40,7 @@ class App extends Component {
 		return (
 		<div className="App">
 			<Header	/>
-			<Main	setRole={ this.setRole } role={ this.state.user.role } setUserID={ this.setUserID }/>
+			<Main	setRole={ this.setRole } role={ this.state.user.role } setUser={ this.setUser }/>
 			{
 				this.state.user.id
 				? <button onClick={ this.logOut }>LOG OUT</button>
