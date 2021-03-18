@@ -1,6 +1,6 @@
-import './Section.css'
+import './LogInButtonSection.css'
 
-function Section ({ setRole }) {
+function LogInButtonSection ({ setRole }) {
 
     const handleClick = (event) => {
         switch(event.target.id) {
@@ -29,4 +29,4 @@ function Section ({ setRole }) {
     )
 }
 
-export default Section
+export default LogInButtonSection

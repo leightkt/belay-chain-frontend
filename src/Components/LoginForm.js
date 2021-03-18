@@ -1,3 +1,4 @@
+import './LoginForm.css'
 import { Component } from 'react'
 import SignUpForm from './SignUpForm'
 const backendUsersURL = 'http://localhost:9000/'
@@ -104,7 +105,7 @@ class LoginForm extends Component {
                             
                             <label>Password:</label>
                             <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } placeholder="PASSWORD"/>
-                            <input type="submit" value="LOG IN" />
+                            <input type="submit" className="form-submit" value="LOG IN" />
                             { this.state.errors
                                 ? <p>{ this.state.errors }</p>
                                 : null

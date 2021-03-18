@@ -4,3 +4,12 @@ header {
     padding: 2rem;
     border-bottom: 1px solid orange;
 }
+
+h1 {
+    font-family: 'Major Mono Display', monospace;
+    font-size: 4rem;
+}
+
+header > p {
+    font-family: 'Major Mono Display', monospace;
+}
