@@ -11,7 +11,8 @@ class SignUpForm extends Component {
         zip_code: "",
         email: "",
         password: "",
-        phone: ""
+        phone: "", 
+        errors: ""
     }
 
     handleChange = (event) => {
@@ -72,8 +73,8 @@ class SignUpForm extends Component {
             })
 		})
             .then(response => response.json())
-            .then(console.log)
             .then(data => {
+                console.log(data)
                 if (data.errors) {
                     this.setState({ errors: data.errors })
                 } else {
@@ -85,7 +86,8 @@ class SignUpForm extends Component {
                         zip_code: "",
                         email: "",
                         password: "",
-                        phone: ""
+                        phone: "",
+                        errors: ""
                     })
                     this.props.setUserID(data.user.id)
                     localStorage.setItem('token', data.token)
