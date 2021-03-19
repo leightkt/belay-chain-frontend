@@ -76,7 +76,7 @@ class SignUpForm extends Component {
             .then(data => {
                 console.log(data)
                 if (data.errors) {
-                    this.setState({ errors: data.errors })
+                    this.setState({ errors: data.errors[0] })
                 } else {
                     this.setState({
                         name: "",
@@ -115,6 +115,10 @@ class SignUpForm extends Component {
                 <label>Password:</label>
                 <input name="password" type="password" value={ this.state.password } onChange={ this.handleChange } placeholder="PASSWORD" required />
                 <input type="submit" value="SIGN UP" className="form-submit"/>
+                { this.state.errors
+                    ? <p>{ this.state.errors }</p>
+                    : null
+                }
             </form>
         )
     }

@@ -21,16 +21,18 @@ class App extends Component {
 	}
 	
 	authoriz_user = () => {
-		fetch(`${backendUsersURL}profile`, {
-			method: "GET",
-			headers: {
-				"Authorization": `Bearer ${localStorage.token}`
-			}
-		})
-		.then(response => response.json())
-		.then(data => {
-			this.setUser(data.user)
-		})
+		if(localStorage.getItem("token")) {
+			fetch(`${backendUsersURL}profile`, {
+				method: "GET",
+				headers: {
+					"Authorization": `Bearer ${localStorage.token}`
+				}
+			})
+			.then(response => response.json())
+			.then(data => {
+				this.setUser(data.user)
+			})
+		}
 	}
 
 	setRole = (role) => {
