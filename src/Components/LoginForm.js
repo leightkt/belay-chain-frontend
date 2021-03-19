@@ -105,11 +105,11 @@ class LoginForm extends Component {
                             
                             <label>Password:</label>
                             <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } placeholder="PASSWORD"/>
-                            <input type="submit" className="form-submit" value="LOG IN" />
                             { this.state.errors
                                 ? <p>{ this.state.errors }</p>
                                 : null
                             }
+                            <input type="submit" className="form-submit" value="LOG IN" />
                         </form>
                     :
                     <SignUpForm setUser={ this.props.setUser }/>

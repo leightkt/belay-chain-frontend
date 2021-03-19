@@ -114,11 +114,11 @@ class SignUpForm extends Component {
                 <input name="email" type="text" value={ this.state.email } onChange={ this.handleChange } placeholder="EMAIL" required />
                 <label>Password:</label>
                 <input name="password" type="password" value={ this.state.password } onChange={ this.handleChange } placeholder="PASSWORD" required />
-                <input type="submit" value="SIGN UP" className="form-submit"/>
                 { this.state.errors
                     ? <p>{ this.state.errors }</p>
                     : null
                 }
+                <input type="submit" value="SIGN UP" className="form-submit"/>
             </form>
         )
     }
