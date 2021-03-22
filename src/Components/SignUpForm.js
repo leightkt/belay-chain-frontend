@@ -90,6 +90,7 @@ class SignUpForm extends Component {
                         errors: ""
                     })
                     this.props.setAppUser(data.user)
+                    this.props.setCerts(data.certifications)
                     localStorage.setItem('token', data.token)
                 }
             })

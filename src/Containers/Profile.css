@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    height: 20rem;
+    height: 25rem;
+    width: 20rem;
     font-size: 1.5rem;
     margin-left: 2;
     justify-content: flex-start;

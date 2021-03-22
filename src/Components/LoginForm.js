@@ -79,6 +79,7 @@ class LoginForm extends Component {
                         errors: ""
                     })
                     this.props.setAppUser(data.user)
+                    this.props.setCerts(data.certifications)
                     localStorage.setItem('token', data.token)
                 }
             })
@@ -112,7 +113,7 @@ class LoginForm extends Component {
                             <input type="submit" className="form-submit" value="LOG IN" />
                         </form>
                     :
-                    <SignUpForm setUser={ this.props.setUser }/>
+                    <SignUpForm setAppUser={ this.props.setAppUser } setCerts={ this.props.setCerts }/>
                 }
                 
 

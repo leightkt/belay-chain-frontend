@@ -5,7 +5,8 @@ const backendUsersURL = 'http://localhost:9000/'
 
 class Profile extends Component {
     state = {
-        editProfile: false
+        editProfile: false,
+        confirmDelete: false
     }
 
     componentDidMount() {
@@ -23,7 +24,7 @@ class Profile extends Component {
         for (let key in this.props.user){
             if(key !== "id" && key !== "role"){
                 if (this.state.editProfile === false ) {
-                    userProfile.push(<p className={ key }>{ this.state[`${key}`] }</p>)
+                    userProfile.push(<p className={ key }>{ this.props.user[`${key}`] }</p>)
                 } else {
                     if (key !== "gym_member_id" && key !== "gym") {
                         userProfile.push(<input name={ key } value={ this.state[`${key}`] } onChange={ this.handleChange }/>)
@@ -83,22 +84,8 @@ class Profile extends Component {
             }
         }
 
-        let roleURL = ""
+        const roleURL = this.setroleURL()
         
-        switch(this.props.role){
-            case "member":
-                roleURL = "members"
-                break
-            case "gym":
-                roleURL = "gyms"
-                break
-            case "admin":
-                roleURL = "administrators"
-                break
-            default: 
-                return null
-        }
-
         if(this.state.editProfile) {
             fetch(`${backendUsersURL}${roleURL}/${this.state.id}`, {
                 method: "PATCH",
@@ -123,24 +110,83 @@ class Profile extends Component {
         }
         this.setState({ editProfile: !this.state.editProfile })
     }
+
+    setroleURL = () => {
+        let roleURL = ""
+        switch(this.props.role){
+            case "member":
+                roleURL = "members"
+                break
+            case "gym":
+                roleURL = "gyms"
+                break
+            case "admin":
+                roleURL = "administrators"
+                break
+            default: 
+                return null
+        }
+        return roleURL
+    }
     
+    askforDeleteConfirmation = () => {
+        this.toggleConfirmDelete()
+    }
+
+    deleteAccount = () => {
+
+        const roleURL = this.setroleURL()
+        fetch(`${backendUsersURL}${roleURL}/${this.state.id}`, {
+            method: "DELETE",
+            headers: {
+                Accept: "application/json",
+                "Content-type": "application/json",
+                "Authorization": `Bearer: ${localStorage.token}`
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.errors) {
+                    this.setState({ errors: data.errors[0] })
+                } else {
+                    this.setState({ errors: "" })
+                    this.props.setAppUser({})
+                    this.props.setRole("")
+                    localStorage.removeItem('token')
+                }
+            })
+    }
+
+    toggleConfirmDelete = () => {
+        this.setState({ confirmDelete: !this.state.confirmDelete })
+    }
+
     render(){
         return(
             <>
                 <section className="profile">
-                        { this.displayUser() }
-                        {this.state.editProfile
-                            ? <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } placeholder="Password"/>
-                            : null
-                        }
-                        { this.state.errors
-                                ? <p>{ this.state.errors }</p>
-                                : null
-                        }
-                        <button class="edit" onClick={ this.toggleEdit }>EDIT</button>
-                        {this.state.editProfile
-                            ? <button onClick={ this.deleteAccount }>DELETE</button>
-                            : null 
+                        { this.state.confirmDelete
+                            ? <>
+                                <p>Are you sure you want to delete your account?</p>
+                                <button onClick={ this.deleteAccount }>CONFIRM</button>
+                                <button onClick={ this.toggleConfirmDelete }>CANCEL</button>
+                            </>
+                            : <>
+                                { this.displayUser() }
+                                {this.state.editProfile
+                                    ? <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } placeholder="Password"/>
+                                    : null
+                                }
+                                { this.state.errors
+                                        ? <p>{ this.state.errors }</p>
+                                        : null
+                                }
+                                <button class="edit" onClick={ this.toggleEdit }>EDIT</button>
+                                {this.state.editProfile
+                                    ? <button onClick={ this.askforDeleteConfirmation }>DELETE</button>
+                                    : null 
+                                }
+                            </>
                         }
                 </section>
                 <CertificationsContainer certifications={ this.props.certifications }/>
