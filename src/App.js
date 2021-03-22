@@ -30,13 +30,14 @@ class App extends Component {
 			.then(data => {
 				this.setAppUser(data.user)
 				this.setRole(data.user.role)
+				console.log(data.certifications)
 				this.setCerts(data.certifications)
 			})
 		}
 	}
 
-	setCerts = (certs) => {
-		this.setState({ certifications: certs})
+	setCerts = (certifications) => {
+		this.setState({ certifications })
 	}
 
 	setRole = (role) => {

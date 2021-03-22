@@ -76,7 +76,12 @@ class Profile extends Component {
     }
 
     toggleEdit = () => {
+        this.setState({ editProfile: !this.state.editProfile })
+        this.setState({ errors: "" })
+    }
 
+    userUpdate = () => {
+        console.log("hit")
         const userdata = {}
         for (let key in this.state){
             if(key !== "editProfile") {
@@ -85,8 +90,8 @@ class Profile extends Component {
         }
 
         const roleURL = this.setroleURL()
-        
-        if(this.state.editProfile) {
+
+        if(this.state.editProfile === true){
             fetch(`${backendUsersURL}${roleURL}/${this.state.id}`, {
                 method: "PATCH",
                 headers: {
@@ -172,20 +177,25 @@ class Profile extends Component {
                                 <button onClick={ this.toggleConfirmDelete }>CANCEL</button>
                             </>
                             : <>
-                                { this.displayUser() }
-                                {this.state.editProfile
-                                    ? <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } placeholder="Password"/>
-                                    : null
-                                }
-                                { this.state.errors
+                                <form class="update">
+                                    { this.displayUser() }
+                                    {this.state.editProfile
+                                        ?   <>
+                                                <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } placeholder="Password"/>
+                                                <div className="update-div">
+                                                    <button onClick={ this.userUpdate }>UPDATE</button>
+                                                    <button onClick={ this.toggleEdit }>CANCEL</button>
+                                                    <button onClick={ this.askforDeleteConfirmation }>DELETE</button>
+                                                </div>
+                                                
+                                            </>
+                                        : <button class="edit" onClick={ this.toggleEdit }>EDIT</button>
+                                    }
+                                    { this.state.errors
                                         ? <p>{ this.state.errors }</p>
                                         : null
-                                }
-                                <button class="edit" onClick={ this.toggleEdit }>EDIT</button>
-                                {this.state.editProfile
-                                    ? <button onClick={ this.askforDeleteConfirmation }>DELETE</button>
-                                    : null 
-                                }
+                                    }
+                                </form>
                             </>
                         }
                 </section>
