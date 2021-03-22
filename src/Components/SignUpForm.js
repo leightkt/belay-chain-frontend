@@ -89,7 +89,7 @@ class SignUpForm extends Component {
                         phone: "",
                         errors: ""
                     })
-                    this.props.setUser(data.user)
+                    this.props.setAppUser(data.user)
                     localStorage.setItem('token', data.token)
                 }
             })

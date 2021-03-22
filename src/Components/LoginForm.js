@@ -78,7 +78,7 @@ class LoginForm extends Component {
                         role: "",
                         errors: ""
                     })
-                    this.props.setUser(data.user)
+                    this.props.setAppUser(data.user)
                     localStorage.setItem('token', data.token)
                 }
             })

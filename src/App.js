@@ -3,17 +3,42 @@ import { Component } from 'react'
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import LoginContainer from './Containers/LogInContainer';
-import Profile from './Profile';
+import Profile from './Containers/Profile';
 
 const backendUsersURL = 'http://localhost:9000/'
 
 class App extends Component {
 	state = {
-		user: {
-			id: "",
-			role: "",
-		},
-		certifications: []
+		role: "",
+		user: { },
+		certifications: [
+			{
+				id: "605504d2d0355b3b6b2ef51e",
+				index: 0,
+				timestamp: 0,
+				data: {
+					gym_id: 21,
+					gym_member_id: 1234,
+					cert_type: "Lead"
+				},
+				previousHash: "",
+				hash: "",
+				nonce: 1234
+			},
+			{
+				id: "605504d2d0355b3b6b2ef51e",
+				index: 1,
+				timestamp: 0,
+				data: {
+					gym_id: 21,
+					gym_member_id: 1234,
+					cert_type: "Lead"
+				},
+				previousHash: "",
+				hash: "",
+				nonce: 1234
+			}
+		]
 	}
 
 	componentDidMount() {
@@ -30,27 +55,28 @@ class App extends Component {
 			})
 			.then(response => response.json())
 			.then(data => {
-				this.setUser(data.user)
+				this.setAppUser(data.user)
+				this.setState({ id: data.user.id,
+					role: data.user.role })
 			})
 		}
 	}
 
 	setRole = (role) => {
-		this.setState({ user: { role } })
+		this.setState({ role })
 	}
 
-	setUser = (user) => {
+	setAppUser = (user) => {
 		this.setState({ user })
 	}
 
 	logOut = () => {
 		localStorage.removeItem('token')
 		this.setState({
-			user: {
 				id: "",
-				role: ""
-			},
-			certifications: []
+				role: "",
+				user: {},
+				certifications: []
 		})
 	}
 
@@ -64,9 +90,9 @@ class App extends Component {
 				{
 					this.state.user.id
 					?
-					<Profile />
+					<Profile user={ this.state.user } certifications={ this.state.certifications } setAppUser={ this.setAppUser } role={ this.state.role }/>
 					:
-					<LoginContainer	setRole={ this.setRole } role={ this.state.user.role } setUser={ this.setUser }/>
+					<LoginContainer	setRole={ this.setRole } role={ this.state.role } setAppUser={ this.setAppUser }/>
 				}
 			{
 				this.state.user.id
