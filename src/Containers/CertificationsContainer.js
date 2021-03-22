@@ -1,11 +1,11 @@
 import CertCard from '../Components/CertCard'
 import './CertificationsContainer.css'
 
-function CertificationsContainer ({ certifications }) {
+function CertificationsContainer ({ certifications, role }) {
 
     const displayCertifications = () => {
         return certifications.map(cert => {
-            return <CertCard key={ cert.index } cert={ cert }/>
+            return <CertCard key={ cert.index } cert={ cert } role={ role }/>
         })
     }
 

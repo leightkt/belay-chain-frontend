@@ -27,6 +27,7 @@ class Profile extends Component {
                     userProfile.push(<p className={ key }>{ this.props.user[`${key}`] }</p>)
                 } else {
                     if (key !== "gym_member_id" && key !== "gym") {
+                        userProfile.push(<label>{ key }</label>)
                         userProfile.push(<input name={ key } value={ this.state[`${key}`] } onChange={ this.handleChange }/>)
                     }
                 }
@@ -181,6 +182,7 @@ class Profile extends Component {
                                     { this.displayUser() }
                                     {this.state.editProfile
                                         ?   <>
+                                                <label>Password</label>
                                                 <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } placeholder="Password"/>
                                                 <div className="update-div">
                                                     <button onClick={ this.userUpdate }>UPDATE</button>
@@ -199,7 +201,7 @@ class Profile extends Component {
                             </>
                         }
                 </section>
-                <CertificationsContainer certifications={ this.props.certifications }/>
+                <CertificationsContainer certifications={ this.props.certifications } role={ this.props.role }/>
             </>
         )
     }

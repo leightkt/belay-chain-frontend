@@ -4,6 +4,8 @@ import Header from './Components/Header';
 import Footer from './Components/Footer';
 import LoginContainer from './Containers/LogInContainer';
 import Profile from './Containers/Profile';
+import AddCertForm from './Components/AddCertForm'
+import { Redirect, Route, Switch } from 'react-router-dom'
 
 const backendUsersURL = 'http://localhost:9000/'
 
@@ -63,22 +65,31 @@ class App extends Component {
 	render() {
 		return (
 		<div className="App">
-			<Header	/>
-			<main>
-				{
-					this.state.user.id
-					?
-					<Profile user={ this.state.user } certifications={ this.state.certifications } setAppUser={ this.setAppUser } role={ this.state.role } setRole={ this.setRole }/>
-					:
-					<LoginContainer	setRole={ this.setRole } role={ this.state.role } setAppUser={ this.setAppUser } setCerts={ this.setCerts }/>
-				}
-			{
-				this.state.user.id
-				? <button onClick={ this.logOut }>LOG OUT</button>
-				: null
-			}
+			<Header	role={ this.state.role }/>
+			<Switch>
+				<Route path="/" exact render={() => {
+						return (
+							<main>
+							{
+								this.state.user.id
+								?
+								<Profile user={ this.state.user } certifications={ this.state.certifications } setAppUser={ this.setAppUser } role={ this.state.role } setRole={ this.setRole }/>
+								:
+								<LoginContainer	setRole={ this.setRole } role={ this.state.role } setAppUser={ this.setAppUser } setCerts={ this.setCerts }/>
+							}
+							{
+								this.state.user.id
+								? <button onClick={ this.logOut }>LOG OUT</button>
+								: null
+							}
+							</main>
+						)
+					}
+				} />
+				<Route path="/addcert" render={(routerProps) => <AddCertForm { ...routerProps } gym_id={ this.state.user.id }/>}/>
+				<Redirect to="/" />
+			</Switch>
 			<Footer	/>
-			</main>
 		</div>
 		);
 	}
