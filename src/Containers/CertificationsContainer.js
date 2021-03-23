@@ -1,6 +1,7 @@
 import CertCard from '../Components/CertCard'
 import './CertificationsContainer.css'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const backendUsersURL = 'http://localhost:9000/'
 
@@ -20,7 +21,7 @@ function CertificationsContainer ({ certifications, role, match }) {
     }
 
     const verifyAndDisplay = () => {
-        if (match.params.hash) {
+        if (match) {
             fetch(`${backendUsersURL}verify`, {
                 method: "POST",
                 headers: {
@@ -45,11 +46,20 @@ function CertificationsContainer ({ certifications, role, match }) {
     }
 
     return(
-        <section className="cert-container">
-            { loaded ? displayCertifications(certs) : null}
-            { certifications ? displayCertifications(certifications) : null }
-            { errors ? <p>Cerification Can Not Be Verified</p> : <p>Certification Verified</p>}
-        </section>
+        <div className="cert-wrapper">
+            <section className="cert-container">
+                { loaded ? displayCertifications(certs) : null}
+                { certifications ? displayCertifications(certifications) : null }
+            </section>
+            { certifications 
+                ? null
+                :
+                    <>
+                        <p className="verify-message">{errors ? "Cerification Can Not Be Verified" : "Certification Verified"}</p>
+                        <Link className="back-link" to="/">BACK</Link>
+                    </>
+            }
+        </div>
     )
 }
 

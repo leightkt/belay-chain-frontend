@@ -8,7 +8,6 @@ function CertCard ({ cert, role }) {
     return (
         <div className="cert-card" >
             <p>{ `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}` }</p>
-            { role === "verify" ? <p>{ cert.gym }</p> : null }
             { role === "gym" || role === "verify"
                 ?   <>
                         <p>{ cert.data.user_member_number }</p>
@@ -19,7 +18,7 @@ function CertCard ({ cert, role }) {
                 : <p>{ cert.gym }</p>
             }
             <p>{ cert.data.cert_type }</p>
-            <Link to={{ pathname: '/certQR', state: { hash: cert.hash } }} className="view-cert" >View Certification</Link>
+            { role === "verify" ? <p>{ cert.gym }</p> : <Link to={{ pathname: '/certQR', state: { hash: cert.hash } }} className="view-cert" >View Certification</Link> }
         </div>
     )
 }

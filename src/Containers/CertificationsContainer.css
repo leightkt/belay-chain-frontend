@@ -2,5 +2,18 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 40rem;
+    justify-content: space-around;
+    align-items: space-around;
+}
+
+.verify-message {
+    margin: 4rem 2rem;
+    font-size: 1.5rem;
+    color: orange;
+    align-self: center;
+}
+
+.cert-wrapper {
+    display: flex;
+    flex-direction: column;
 }

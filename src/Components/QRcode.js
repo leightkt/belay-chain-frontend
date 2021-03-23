@@ -7,11 +7,10 @@ function QRcode ({ location }) {
 
     const urlString = `/verifycert/${hash}`
     const url4QR = `http://localhost:3000${urlString}`
-    console.log(url4QR)
 
     return(
         <section className="qr-section">
-            <QRCode value={ urlString } />
+            <QRCode value={ url4QR } />
             <Link className="view-cert" to={ urlString } >Scan or Click to Verify</Link>
         </section>
     )
