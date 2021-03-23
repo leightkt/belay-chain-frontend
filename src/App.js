@@ -95,7 +95,7 @@ class App extends Component {
 				<Route path="/addcert" render={ (routerProps) => <AddCertForm { ...routerProps } gym_id={ this.state.user.id } addCertToState={ this.addCertToState }/> }/>
 				<Route path="/certQR" exact render={ (routerProps) => <QRcode { ...routerProps } /> } />
 				<Route path="/verifycert/:hash" render={ (routerProps) =>  <CertificationsContainer  {...routerProps } />} />
-				{/* <Redirect to="/" /> */}
+				<Redirect to="/" />
 			</Switch>
 			<Footer	/>
 		</div>
