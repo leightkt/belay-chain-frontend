@@ -93,7 +93,6 @@ class AddCertForm extends Component {
         })
         .then(response => response.json())
         .then(result => {
-            console.log(result)
             this.props.addCertToState(result)
             this.props.history.push('/')
         })
@@ -101,34 +100,32 @@ class AddCertForm extends Component {
 
     render(){
         return(
-            <>
-                <secion className="add-or-lookup">
-                    <form className="add-cert-form" onSubmit={ this.addCertification }>
-                        <h2>Add Belay Certificaiton</h2>
-                        <label>Member ID:</label>
-                        <input type="text" name="member_id" placeholder="MEMBER ID" value={ this.state.member_id } onChange={ this.handleChange } required/>
-                        <label>Certification Type:</label>
-                        <select name="cert_type" onChange={ this.handleChange } value={ this.state.cert_type }>
-                            <option>Top Rope</option>
-                            <option>Lead</option>
-                            <option>Revoke Previous Certificaiton</option>
-                        </select>
-                        <input type="submit" value="ON BELAY" />
-                    </form>
-                    <form className="lookup" onSubmit={ this.findUser }>
-                        <h2>Look Up User</h2>
-                        <label>Email:</label>
-                        <input type="email" name="email" placeholder="EMAIL" onChange={ this.handleChange } value={ this.state.email }/>
-                        <label>First Name:</label>
-                        <input type="text" name="first_name" placeholder="FIRST NAME" onChange={ this.handleChange } value={ this.state.first_name }/>
-                        <label>Last Name:</label>
-                        <input type="text" name="last_name" placeholder="LAST NAME" onChange={ this.handleChange } value={ this.state.last_name }/>
-                        <input type="submit" value="FIND MEMBER" />
-                        { this.state.errors ? <p>{ this.state.errors }</p> : null }
-                    </form>
-                    <Link to="/">BACK</Link>
-                </secion>
-            </>
+            <section className="add-or-lookup">
+                <form className="add-cert-form" onSubmit={ this.addCertification }>
+                    <h2>Add Belay Certificaiton</h2>
+                    <label>Member ID:</label>
+                    <input type="text" name="member_id" placeholder="MEMBER ID" value={ this.state.member_id } onChange={ this.handleChange } required/>
+                    <label>Certification Type:</label>
+                    <select name="cert_type" onChange={ this.handleChange } value={ this.state.cert_type }>
+                        <option>Top Rope</option>
+                        <option>Lead</option>
+                        <option>Revoke Previous Certificaiton</option>
+                    </select>
+                    <input type="submit" value="ON BELAY" />
+                </form>
+                <form className="lookup" onSubmit={ this.findUser }>
+                    <h2>Look Up User</h2>
+                    <label>Email:</label>
+                    <input type="email" name="email" placeholder="EMAIL" onChange={ this.handleChange } value={ this.state.email }/>
+                    <label>First Name:</label>
+                    <input type="text" name="first_name" placeholder="FIRST NAME" onChange={ this.handleChange } value={ this.state.first_name }/>
+                    <label>Last Name:</label>
+                    <input type="text" name="last_name" placeholder="LAST NAME" onChange={ this.handleChange } value={ this.state.last_name }/>
+                    <input type="submit" value="FIND MEMBER" />
+                    { this.state.errors ? <p>{ this.state.errors }</p> : null }
+                </form>
+                <Link to="/">BACK</Link>
+            </section>
         )
     }
 }
