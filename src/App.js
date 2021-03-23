@@ -32,7 +32,6 @@ class App extends Component {
 			.then(data => {
 				this.setAppUser(data.user)
 				this.setRole(data.user.role)
-				console.log(data.certifications)
 				this.setCerts(data.certifications)
 			})
 		}
@@ -58,6 +57,11 @@ class App extends Component {
 				user: {},
 				certifications: []
 		})
+	}
+
+	addCertToState = (newCert) => {
+		const certifications = this.state.certifications.filter(certification => certification.index !== newCert.index)
+		this.setState({ certifications: [...certifications, newCert]})
 	}
 
 	
@@ -86,7 +90,7 @@ class App extends Component {
 						)
 					}
 				} />
-				<Route path="/addcert" render={(routerProps) => <AddCertForm { ...routerProps } gym_id={ this.state.user.id }/>}/>
+				<Route path="/addcert" render={(routerProps) => <AddCertForm { ...routerProps } gym_id={ this.state.user.id } addCertToState={ this.addCertToState }/>}/>
 				<Redirect to="/" />
 			</Switch>
 			<Footer	/>
