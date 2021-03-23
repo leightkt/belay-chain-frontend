@@ -6,6 +6,8 @@ import LoginContainer from './Containers/LogInContainer';
 import Profile from './Containers/Profile';
 import AddCertForm from './Components/AddCertForm'
 import { Redirect, Route, Switch } from 'react-router-dom'
+import CertificationsContainer from './Containers/CertificationsContainer';
+import QRcode from './Components/QRcode';
 
 const backendUsersURL = 'http://localhost:9000/'
 
@@ -90,8 +92,10 @@ class App extends Component {
 						)
 					}
 				} />
-				<Route path="/addcert" render={(routerProps) => <AddCertForm { ...routerProps } gym_id={ this.state.user.id } addCertToState={ this.addCertToState }/>}/>
-				<Redirect to="/" />
+				<Route path="/addcert" render={ (routerProps) => <AddCertForm { ...routerProps } gym_id={ this.state.user.id } addCertToState={ this.addCertToState }/> }/>
+				<Route path="/certQR" exact render={ (routerProps) => <QRcode { ...routerProps } /> } />
+				<Route path="/verifycert/:hash" render={ (routerProps) =>  <CertificationsContainer  {...routerProps } />} />
+				{/* <Redirect to="/" /> */}
 			</Switch>
 			<Footer	/>
 		</div>

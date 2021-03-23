@@ -20,4 +20,13 @@ header > p {
     right: 2rem;
     top: 8rem;
     width: 12rem;
+    background-color: orange;
+    padding: 2rem;
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: black;
+    cursor: pointer;
+    height: 2rem;
+    text-align: center;
+    margin: 1rem;
 }

@@ -1,14 +1,15 @@
 import './CertCard.css'
+import { Link } from 'react-router-dom'
 
 function CertCard ({ cert, role }) {
     const timestamp = cert.timestamp
     const date = new Date(timestamp);
 
-
     return (
-        <div className="cert-card">
+        <div className="cert-card" >
             <p>{ `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}` }</p>
-            { role === "gym"
+            { role === "verify" ? <p>{ cert.gym }</p> : null }
+            { role === "gym" || role === "verify"
                 ?   <>
                         <p>{ cert.data.user_member_number }</p>
                         <p>{ cert.first_name }</p>
@@ -18,6 +19,7 @@ function CertCard ({ cert, role }) {
                 : <p>{ cert.gym }</p>
             }
             <p>{ cert.data.cert_type }</p>
+            <Link to={{ pathname: '/certQR', state: { hash: cert.hash } }} className="view-cert" >View Certification</Link>
         </div>
     )
 }

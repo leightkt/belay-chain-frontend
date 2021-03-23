@@ -137,7 +137,7 @@ class AddCertForm extends Component {
                     <input type="submit" value="FIND MEMBER" />
                     { this.state.errors ? <p>{ this.state.errors }</p> : null }
                 </form>
-                <Link to="/">BACK</Link>
+                <Link className="back-link" to="/">BACK</Link>
             </section>
         )
     }
