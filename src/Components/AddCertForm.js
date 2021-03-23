@@ -93,7 +93,8 @@ class AddCertForm extends Component {
         })
         .then(response => response.json())
         .then(result => {
-            this.props.addCertToState(result.newCert.newblock)
+            console.log(result)
+            this.props.addCertToState(result)
             this.props.history.push('/')
         })
     }
@@ -105,7 +106,7 @@ class AddCertForm extends Component {
                     <form className="add-cert-form" onSubmit={ this.addCertification }>
                         <h2>Add Belay Certificaiton</h2>
                         <label>Member ID:</label>
-                        <input type="text" name="member_id" placeholder="MEMBER ID" value={ this.state.member_id }onChange={ this.handleChange }/>
+                        <input type="text" name="member_id" placeholder="MEMBER ID" value={ this.state.member_id } onChange={ this.handleChange } required/>
                         <label>Certification Type:</label>
                         <select name="cert_type" onChange={ this.handleChange } value={ this.state.cert_type }>
                             <option>Top Rope</option>

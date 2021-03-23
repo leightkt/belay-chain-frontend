@@ -178,7 +178,7 @@ class Profile extends Component {
                                 <button onClick={ this.toggleConfirmDelete }>CANCEL</button>
                             </>
                             : <>
-                                <form class="update">
+                                <form className="update">
                                     { this.displayUser() }
                                     {this.state.editProfile
                                         ?   <>

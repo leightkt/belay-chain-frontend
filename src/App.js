@@ -12,7 +12,7 @@ const backendUsersURL = 'http://localhost:9000/'
 class App extends Component {
 	state = {
 		role: "",
-		user: { },
+		user: {},
 		certifications: []
 	}
 
@@ -69,7 +69,7 @@ class App extends Component {
 	render() {
 		return (
 		<div className="App">
-			<Header	role={ this.state.role }/>
+			<Header	role={ this.state.role } userID={ this.state.user.id }/>
 			<Switch>
 				<Route path="/" exact render={() => {
 						return (
