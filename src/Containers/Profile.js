@@ -28,7 +28,7 @@ class Profile extends Component {
                 } else {
                     if (key !== "gym_member_id" && key !== "gym") {
                         userProfile.push(<label>{ key }</label>)
-                        userProfile.push(<input name={ key } value={ this.state[`${key}`] } onChange={ this.handleChange }/>)
+                        userProfile.push(<input name={ key } value={ this.state[`${key}`] } onChange={ this.handleChange } placeholder={ key }/>)
                     }
                 }
                 
@@ -178,6 +178,7 @@ class Profile extends Component {
                                 <button onClick={ this.toggleConfirmDelete }>CANCEL</button>
                             </>
                             : <>
+                                { !this.state.first_name && this.props.role === "member" ? <p>First time here? Click edit to update your information and reset your password.</p> : null }
                                 <form className="update">
                                     { this.displayUser() }
                                     {this.state.editProfile

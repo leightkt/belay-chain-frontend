@@ -37,3 +37,9 @@ a {
     display: flex;
     flex-direction: column;
 }
+
+.lookup > p {
+    color: orange;
+    font-size: 1.25rem;
+    font-weight: bold;
+}

@@ -6,6 +6,20 @@
     justify-content: flex-start;
 }
 
+.profile > button {
+    height: 2rem;
+    width: 5.25rem;
+    justify-self: flex-start;
+    align-self: flex-start;
+    margin: 0.5rem 1rem;
+}
+
+.profile > p {
+    color: orange;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
 .update > p {
     margin: 0.5rem 0.2rem;
 }

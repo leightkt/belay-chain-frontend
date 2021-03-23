@@ -58,13 +58,15 @@ class AddCertForm extends Component {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             if (data.errors) {
-                this.setState({ errors: data.errors })
+                this.setState({ 
+                    errors: data.errors,
+                    member_id: "",
+                    email: "" })
             } else {
                 this.setState({ 
                     member_id: data.member_id,
-                    email: "",
+                    email: data.email,
                     first_name: "",
                     last_name: "",
                     errors: ""
@@ -87,14 +89,23 @@ class AddCertForm extends Component {
                 user: {
                     cert_type: this.state.cert_type,
                     gym_member_id: parseInt(this.state.member_id),
-                    gym_id: this.props.gym_id
+                    gym_id: this.props.gym_id,
+                    email: this.state.email
                 }
             })
         })
         .then(response => response.json())
         .then(result => {
-            this.props.addCertToState(result)
-            this.props.history.push('/')
+            if (result.errors){
+                this.setState({ 
+                    errors: result.errors,
+                    member_id: "",
+                    email: "" })
+            } else {
+                this.props.addCertToState(result)
+                this.props.history.push('/')
+            }
+            
         })
     }
 
@@ -105,8 +116,10 @@ class AddCertForm extends Component {
                     <h2>Add Belay Certificaiton</h2>
                     <label>Member ID:</label>
                     <input type="text" name="member_id" placeholder="MEMBER ID" value={ this.state.member_id } onChange={ this.handleChange } required/>
+                    <label>Email:</label>
+                    <input type="email" name="email" placeholder="EMAIL" onChange={ this.handleChange } value={ this.state.email } required/>
                     <label>Certification Type:</label>
-                    <select name="cert_type" onChange={ this.handleChange } value={ this.state.cert_type }>
+                    <select name="cert_type" onChange={ this.handleChange } value={ this.state.cert_type } required>
                         <option>Top Rope</option>
                         <option>Lead</option>
                         <option>Revoke Previous Certificaiton</option>
