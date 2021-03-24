@@ -11,7 +11,7 @@ function QRcode ({ location }) {
     return(
         <section className="qr-section">
             <QRCode value={ url4QR } />
-            <Link className="view-cert" to={ urlString } >Scan or Click to Verify</Link>
+            <Link className="verify-link" to={ urlString } >Scan or Click to Verify</Link>
         </section>
     )
 }

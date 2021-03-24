@@ -1,6 +1,26 @@
 .qr-section {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
-    height: 20rem;
+    height: 25rem;
+}
+
+canvas {
+    width: 15rem !important;
+    height: 15rem !important;
+}
+
+.verify-link {
+    background-color: orange;
+    padding: 0.5rem;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+    margin: 1rem;
+    width: 15rem;
+
 }

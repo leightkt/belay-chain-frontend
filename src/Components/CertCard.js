@@ -14,7 +14,7 @@ function CertCard ({ cert, role }) {
                 return Lead
             case "Top Rope":
                 return Top
-            case "Revoke Previous Certificaiton":
+            case "Revoke Previous Certification":
                 return Nope
             default:
                 break;

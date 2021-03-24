@@ -122,7 +122,7 @@ class AddCertForm extends Component {
                     <select name="cert_type" onChange={ this.handleChange } value={ this.state.cert_type } required>
                         <option>Top Rope</option>
                         <option>Lead</option>
-                        <option>Revoke Previous Certificaiton</option>
+                        <option>Revoke Previous Certification</option>
                     </select>
                     <input type="submit" value="ON BELAY" />
                 </form>

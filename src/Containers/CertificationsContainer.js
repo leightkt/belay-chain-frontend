@@ -9,6 +9,7 @@ function CertificationsContainer ({ certifications, role, match }) {
     const [ certs, setCerts ] = useState([])
     const [ loaded, setLoad ] = useState(false)
     const [ errors, setErrors ] = useState("")
+    const [ message, setMessage ] = useState("")
 
     useEffect(() => {
         verifyAndDisplay()
@@ -37,8 +38,13 @@ function CertificationsContainer ({ certifications, role, match }) {
                     if (result.errors) {
                         setErrors(result.errors)
                     } else {
-                        setCerts([...certs, result])
+                        setCerts([result])
                         setLoad(true)
+                        if (result.data.cert_type === "Revoke Previous Certification") {
+                            setMessage("Certification Revoked")
+                        } else {
+                            setMessage("Certification Verified")
+                        }
                     }
                 })
         }
@@ -55,7 +61,8 @@ function CertificationsContainer ({ certifications, role, match }) {
                 ? null
                 :
                     <>
-                        <p className="verify-message">{errors ? "Cerification Can Not Be Verified" : "Certification Verified"}</p>
+                        <p className="verify-message">{ errors ? "Cerification Can Not Be Verified" : null }</p>
+                        <p className="verify-message">{ message ? message : null }</p>
                         <Link className="back-link" to="/">BACK</Link>
                     </>
             }
