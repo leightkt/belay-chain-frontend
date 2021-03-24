@@ -1,13 +1,30 @@
 import './CertCard.css'
 import { Link } from 'react-router-dom'
+import Lead from '../Assets/lead.png'
+import Top from '../Assets/top.png'
+import Nope from '../Assets/nope.png'
 
 function CertCard ({ cert, role }) {
     const timestamp = cert.timestamp
-    const date = new Date(timestamp);
+    const date = new Date(timestamp)
+
+    const findIcon = () => {
+        switch (cert.data.cert_type) {
+            case "Lead":
+                return Lead
+            case "Top Rope":
+                return Top
+            case "Revoke Previous Certificaiton":
+                return Nope
+            default:
+                break;
+        }
+    }
 
     return (
         <div className="cert-card" >
-            <p>{ `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}` }</p>
+            <img src={ findIcon() } alt="climbing icon" className="icon"/>
+            <p>{ `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}` }</p>
             { role === "gym" || role === "verify"
                 ?   <>
                         <p>{ cert.data.user_member_number }</p>
