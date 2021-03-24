@@ -195,7 +195,7 @@ class Profile extends Component {
                                         : <button class="edit" onClick={ this.toggleEdit }>EDIT</button>
                                     }
                                     { this.state.errors
-                                        ? <p>{ this.state.errors }</p>
+                                        ? <p className="errors">{ this.state.errors }</p>
                                         : null
                                     }
                                 </form>

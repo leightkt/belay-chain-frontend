@@ -1,9 +1,10 @@
 .profile {
     margin: 0;
-    padding: 4rem;
+    padding: 1rem;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    max-width: 20rem;
 }
 
 .profile > button {
@@ -12,10 +13,11 @@
     justify-self: flex-start;
     align-self: flex-start;
     margin: 0.5rem 1rem;
+    font-weight: normal;
 }
 
 .profile > p {
-    color: orange;
+    color: rgba(31,123,190,255);
     font-size: 1.25rem;
     font-weight: bold;
 }
@@ -47,9 +49,9 @@
     flex-direction: column;
     flex-wrap: wrap;
     height: 25rem;
-    width: 20rem;
+    max-width: 20rem;
     font-size: 1.5rem;
-    margin-left: 2;
+    margin-left: 4rem;
     justify-content: flex-start;
     align-items: space-around;
 }

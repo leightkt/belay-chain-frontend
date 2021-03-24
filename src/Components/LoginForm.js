@@ -107,7 +107,7 @@ class LoginForm extends Component {
                             <label>Password:</label>
                             <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } placeholder="PASSWORD"/>
                             { this.state.errors
-                                ? <p>{ this.state.errors }</p>
+                                ? <p className="errors">{ this.state.errors }</p>
                                 : null
                             }
                             <input type="submit" className="form-submit" value="LOG IN" />

@@ -2,7 +2,9 @@ header {
     height: 12rem;
     margin: 0;
     padding: 2rem;
-    border-bottom: 1px solid orange;
+    /* border-bottom: 1px solid rgba(233,112,3,255); */
+    background-image: linear-gradient(to left, rgba(233,112,3,255), white);
+
 }
 
 h1 {
@@ -20,10 +22,10 @@ header > p {
     right: 2rem;
     top: 8rem;
     width: 12rem;
-    background-color: orange;
+    background-color: rgba(31,123,190,255);
     padding: 2rem;
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     color: black;
     cursor: pointer;
     height: 2rem;

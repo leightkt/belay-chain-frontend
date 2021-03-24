@@ -135,7 +135,7 @@ class AddCertForm extends Component {
                     <label>Last Name:</label>
                     <input type="text" name="last_name" placeholder="LAST NAME" onChange={ this.handleChange } value={ this.state.last_name }/>
                     <input type="submit" value="FIND MEMBER" />
-                    { this.state.errors ? <p>{ this.state.errors }</p> : null }
+                    { this.state.errors ? <p className="errors">{ this.state.errors }</p> : null }
                 </form>
                 <Link className="back-link" to="/">BACK</Link>
             </section>

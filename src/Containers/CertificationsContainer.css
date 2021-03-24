@@ -2,14 +2,15 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: space-around;
+    margin: 0 4rem;
 }
 
 .verify-message {
     margin: 1rem;
     font-size: 1.5rem;
-    color: orange;
+    color: rgba(233,112,3,255);
     align-self: center;
 }
 

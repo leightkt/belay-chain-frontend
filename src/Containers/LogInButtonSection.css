@@ -11,8 +11,7 @@ button {
     border: none;
     width: 10rem;
     height: 5rem;
-    background-color: orange;
-    font-weight: bold;
+    background-color: rgba(233,112,3,255);
     font-size: 1.25rem;
     font-family: 'Rajdhani', sans-serif;
 }

@@ -1,6 +1,6 @@
 input {
     border: none;
-    border-bottom: 1px solid orange;
+    border-bottom: 1px solid rgba(233,112,3,255);
     margin: 2rem 2rem;
     width: 12rem;
     height: 3rem;
@@ -9,7 +9,7 @@ input {
 }
 
 input [type="submit"] {
-    background-color: orange;
+    background-color: rgba(233,112,3,255);
     font-family: 'Rajdhani', sans-serif;
 }
 

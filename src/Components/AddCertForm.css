@@ -1,5 +1,5 @@
 .back-link {
-    background-color: orange;
+    background-color: rgba(233,112,3,255);
     padding: 2rem;
     text-decoration: none;
     font-size: 1.5rem;
@@ -39,7 +39,12 @@
 }
 
 .lookup > p {
-    color: orange;
+    color: rgba(233,112,3,255);
     font-size: 1.25rem;
     font-weight: bold;
+}
+
+.add-or-lookup > form > input[type="submit"] {
+    border-bottom: none;
+    background-color: rgba(31,123,190,255);
 }

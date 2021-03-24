@@ -6,14 +6,14 @@ function Footer () {
 
     return(
         <footer>
-            <a href="https://github.com/leightkt"><img src={Github} alt="github logo" className="github-logo" /></a>
-            <p>About the Dev</p>
+            <a href="https://github.com/leightkt" className="hide-on-small"><img src={Github} alt="github logo" className="github-logo" /></a>
+            <p className="about-title">About the Dev</p>
             <div className="about-dev">
                 <p>Kat Leight</p>
-                <p>Full Stack Software Engineer and Full Stack Climber in Denver, CO</p>
+                <p className="hide-on-small">Full Stack Software Engineer and Climber in Denver, CO</p>
                 <p>Explorer of mountains and new technology</p>
             </div>
-            <img src={Blockimage} alt="an orange block" className="block-image" />
+            <img src={Blockimage} alt="an rgba(233,112,3,255) block" className="block-image" />
         </footer>
     )
 }

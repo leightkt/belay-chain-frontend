@@ -12,7 +12,7 @@ canvas {
 }
 
 .verify-link {
-    background-color: orange;
+    background-color: rgba(233,112,3,255);
     padding: 0.5rem;
     text-decoration: none;
     font-size: 1.25rem;

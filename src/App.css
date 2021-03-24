@@ -19,4 +19,99 @@ label {
 main {
     margin: 0;
     padding: 0;
+    min-height: 38rem;
+}
+
+input[type="submit"] {
+    border: none;
+    background-color: rgba(31,123,190,255);
+    font-weight: bold;
+}
+
+.errors {
+    color: rgba(31,123,190,255);
+}
+
+@media screen and (min-width: 1400px) {
+
+    .block-image {
+        width: 15rem !important;
+    }
+
+    .github-logo {
+        height: 9rem !important;
+    }
+
+    .about-dev > p {
+        font-size: 1.25rem !important;
+    }
+
+    .about-title {
+        font-size: 2rem !important;
+    }
+
+    .profile {
+        margin-left: 10rem !important;
+        margin-top: 3rem !important;
+    }
+
+    .cert-container {
+        margin-left: 10rem !important;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .about-dev > p {
+        font-size: 0.75rem !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .profile {
+        max-width: 15rem !important;
+    }
+
+    .block-image {
+        width: 7rem !important;
+        margin: 0;
+    }
+
+    .github-logo {
+        height: 3.5rem !important; 
+        margin: 0;
+    }
+
+    .hide-on-small {
+        display: none;
+    }
+
+    .about-dev > p {
+        font-size: 1rem !important;
+        margin: 0.25rem !important;
+    }
+
+    .about-title {
+        margin: 1.5rem;
+    }
+
+    h1 {
+        font-size: 2.5rem !important;
+    }
+
+    .add-cert {
+        width: 6rem !important;
+        font-size: 1.25rem !important;
+        padding: 1.5rem 1.5rem 2.5rem 1.5rem !important;
+        font-weight: bold;
+    }
+
+    .update {
+        height: auto !important;
+        max-width: none !important;
+        margin-left: 2rem !important;
+    }
+
+    .cert-container {
+        margin: 0 !important;
+    }
 }
