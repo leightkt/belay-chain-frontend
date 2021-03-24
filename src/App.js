@@ -8,6 +8,7 @@ import AddCertForm from './Components/AddCertForm'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import CertificationsContainer from './Containers/CertificationsContainer';
 import QRcode from './Components/QRcode';
+import Climber from './Assets/climber.jpg'
 
 const backendUsersURL = 'http://localhost:9000/'
 
@@ -72,10 +73,12 @@ class App extends Component {
 		return (
 		<div className="App">
 			<Header	role={ this.state.role } userID={ this.state.user.id }/>
+			<main>
+			<img className="climber-image" src={ Climber} alt="a climber haning from a rope in gym" />
 			<Switch>
 				<Route path="/" exact render={() => {
 						return (
-							<main>
+							<>
 							{
 								this.state.user.id
 								?
@@ -88,7 +91,7 @@ class App extends Component {
 								? <button onClick={ this.logOut }>LOG OUT</button>
 								: null
 							}
-							</main>
+							</>
 						)
 					}
 				} />
@@ -97,6 +100,7 @@ class App extends Component {
 				<Route path="/verifycert/:hash" render={ (routerProps) =>  <CertificationsContainer  {...routerProps } />} />
 				<Redirect to="/" />
 			</Switch>
+			</main>
 			<Footer	/>
 		</div>
 		);

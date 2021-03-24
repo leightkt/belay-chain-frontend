@@ -1,13 +1,13 @@
-section {
+.login-buttons {
+    margin: 2rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    width: 100%;
+    justify-content: center;
 }
 
 button {
-    margin: 4rem 2rem;
+    margin: 2rem 4rem;
     border: none;
     width: 10rem;
     height: 5rem;

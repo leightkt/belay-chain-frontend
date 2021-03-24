@@ -13,7 +13,7 @@ function Footer () {
                 <p className="hide-on-small">Full Stack Software Engineer and Climber in Denver, CO</p>
                 <p>Explorer of mountains and new technology</p>
             </div>
-            <img src={Blockimage} alt="an rgba(233,112,3,255) block" className="block-image" />
+            <img src={ Blockimage } alt="an orange block" className="block-image" />
         </footer>
     )
 }

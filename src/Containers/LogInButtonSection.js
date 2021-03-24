@@ -21,7 +21,7 @@ function LogInButtonSection ({ setRole }) {
     }
 
     return(
-        <section onClick={ handleClick }>
+        <section className="login-buttons" onClick={ handleClick }>
             <button id="gym-button">GYM</button>
             <button id="member-button">MEMBER</button>
             <button id="admin-button">ADMINISTRATOR</button>

@@ -32,6 +32,15 @@ input[type="submit"] {
     color: rgba(31,123,190,255);
 }
 
+.climber-image {
+    width: 90rem;
+    opacity: 0.2;
+    z-index: -1;
+    position: absolute;
+    top: 8rem;
+    right: 15rem;
+}
+
 @media screen and (min-width: 1400px) {
 
     .block-image {
