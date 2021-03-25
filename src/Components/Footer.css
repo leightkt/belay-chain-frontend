@@ -34,3 +34,7 @@ footer > p {
     margin: 2rem;
     width: 12rem;
 }
+
+.about-title {
+    font-family: 'Major Mono Display', monospace;
+}

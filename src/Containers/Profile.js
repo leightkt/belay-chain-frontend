@@ -3,6 +3,8 @@ import CertificationsContainer from './CertificationsContainer'
 import { Component } from 'react'
 import Climber from '../Assets/climber.jpg'
 import Search from '../Components/Search'
+import AdminActivities from './AdminActivities'
+
 const backendUsersURL = 'http://localhost:9000/'
 
 class Profile extends Component {
@@ -170,7 +172,7 @@ class Profile extends Component {
     }
 
     render(){
-        const { role, certifications, updateSearchTerm, searchTerm, displayedCerts } = this.props
+        const { role, updateSearchTerm, searchTerm, displayedCerts } = this.props
         
         return(
             <>
@@ -211,7 +213,10 @@ class Profile extends Component {
                     ? <Search updateSearchTerm={ updateSearchTerm} searchTerm={ searchTerm }/>
                     : null 
                 }
-                <CertificationsContainer certifications={ displayedCerts() } role={ role } />
+                { role === "admin"
+                    ? <AdminActivities />
+                    : <CertificationsContainer certifications={ displayedCerts() } role={ role } />
+                }
             </>
         )
     }

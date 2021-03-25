@@ -5,7 +5,7 @@ function Search ({ updateSearchTerm, searchTerm }) {
     return(
         <form className="search-form">
             <label>Search Term</label>
-            <input type="text" name="search-term" onChange={ updateSearchTerm } value={ searchTerm } placeholder="SEARCH"></input>
+            <input type="text" name="search-term" className="search-term" onChange={ updateSearchTerm } value={ searchTerm } placeholder="SEARCH"></input>
         </form>
     )
 }
