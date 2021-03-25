@@ -1,6 +1,7 @@
 import './Profile.css'
 import CertificationsContainer from './CertificationsContainer'
 import { Component } from 'react'
+import Climber from '../Assets/climber.jpg'
 const backendUsersURL = 'http://localhost:9000/'
 
 class Profile extends Component {
@@ -171,6 +172,7 @@ class Profile extends Component {
         return(
             <>
                 <section className="profile">
+                    <img className="climber-image hide-on-small" src={ Climber} alt="a climber haning from a rope in gym" />
                         { this.state.confirmDelete
                             ? <>
                                 <p>Are you sure you want to delete your account?</p>
@@ -184,7 +186,7 @@ class Profile extends Component {
                                     {this.state.editProfile
                                         ?   <>
                                                 <label>Password</label>
-                                                <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } placeholder="Password"/>
+                                                <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } placeholder="Password" className="password-edit"/>
                                                 <div className="update-div">
                                                     <button onClick={ this.userUpdate }>UPDATE</button>
                                                     <button onClick={ this.toggleEdit }>CANCEL</button>

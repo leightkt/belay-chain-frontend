@@ -11,7 +11,7 @@ import AddCertForm from './Components/AddCertForm'
 import CertificationsContainer from './Containers/CertificationsContainer';
 import QRcode from './Components/QRcode';
 import PrivateRoute from './Components/PrivateRoute'
-import Climber from './Assets/climber.jpg'
+
 
 
 const backendUsersURL = 'http://localhost:9000/'
@@ -78,8 +78,8 @@ class App extends Component {
 		<div className="App">
 			<Header	role={ this.state.role } userID={ this.state.user.id }/>
 			<main>
-			{/* <img className="climber-image" src={ Climber} alt="a climber haning from a rope in gym" /> */}
 			<Switch>
+
 				<Route 
 					path="/login" 
 					render={(routerProps) => <LoginContainer	
@@ -89,12 +89,26 @@ class App extends Component {
 							setCerts={ this.setCerts }
 							{ ...routerProps }/> } 
 				/>
+
+				<Route 
+					path="/verifycert/:hash" 
+					render={ 
+						(routerProps) => <CertificationsContainer  {...routerProps } /> 
+					}
+				/>
+				
+				<PrivateRoute 
+					path="/certQR" 
+					component={ QRcode }
+				/>
+
 				<PrivateRoute 
 					path="/addcert" 
 					component={ AddCertForm }
 					gym_id={ this.state.user.id } 
 					addCertToState={ this.addCertToState }
 				/> 
+
 				<PrivateRoute
 					path="/" 
 					component={ Profile }
@@ -104,9 +118,9 @@ class App extends Component {
 					role={ this.state.role } 
 					setRole={ this.setRole } 
 				/>
-				<Route path="/certQR" render={ (routerProps) => <QRcode { ...routerProps } /> } />
-				<Route path="/verifycert/:hash" render={ (routerProps) =>  <CertificationsContainer  {...routerProps } />} />
+				
 				<Redirect to="/" />
+
 			</Switch>
 			{
 				this.state.user.id

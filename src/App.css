@@ -20,6 +20,8 @@ main {
     margin: 0;
     padding: 0;
     min-height: 38rem;
+    display: flex;
+    flex-direction: column;
 }
 
 input[type="submit"] {
@@ -33,13 +35,19 @@ input[type="submit"] {
 }
 
 .climber-image {
-    width: 90rem;
-    opacity: 0.2;
-    z-index: -1;
+    width: 15rem;
     position: absolute;
-    top: 8rem;
-    right: 15rem;
+    right: 0;
+    margin-top: 1rem;
+    margin-right: 1rem;
 }
+
+@media screen and (min-width: 2000px) {
+    .climber-image {
+        width: 30rem !important;
+    }
+}
+
 
 @media screen and (min-width: 1400px) {
 
@@ -67,7 +75,30 @@ input[type="submit"] {
     .cert-container {
         margin-left: 10rem !important;
     }
+
+    .climber-image {
+        width: 20rem;
+        margin-top: 0 !important;
+        margin-right: 3rem !important;
+    }
 }
+
+@media screen and (max-width: 1000px) {
+    .update {
+        height: auto !important;
+    }
+
+    .password-edit {
+        margin-top: 0 !important;
+    }
+
+    .update-div {
+        margin-top: 0 !important;
+    }
+
+}
+
+
 
 @media screen and (max-width: 800px) {
     .about-dev > p {
