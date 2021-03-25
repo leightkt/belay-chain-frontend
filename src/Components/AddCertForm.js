@@ -111,6 +111,7 @@ class AddCertForm extends Component {
 
     render(){
         return(
+            <>
             <section className="add-or-lookup">
                 <form className="add-cert-form" onSubmit={ this.addCertification }>
                     <h2>Add Belay Certificaiton</h2>
@@ -137,8 +138,9 @@ class AddCertForm extends Component {
                     <input type="submit" value="FIND MEMBER" />
                     { this.state.errors ? <p className="errors">{ this.state.errors }</p> : null }
                 </form>
-                <Link className="back-link" to="/">BACK</Link>
             </section>
+            <Link className="back-link" to="/">BACK</Link>
+            </>
         )
     }
 }
