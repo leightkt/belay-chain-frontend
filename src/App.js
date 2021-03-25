@@ -89,8 +89,13 @@ class App extends Component {
 							setCerts={ this.setCerts }
 							{ ...routerProps }/> } 
 				/>
+				<PrivateRoute 
+					path="/addcert" 
+					component={ AddCertForm }
+					gym_id={ this.state.user.id } 
+					addCertToState={ this.addCertToState }
+				/> 
 				<PrivateRoute
-					exact 
 					path="/" 
 					component={ Profile }
 					user={ this.state.user } 
@@ -99,7 +104,6 @@ class App extends Component {
 					role={ this.state.role } 
 					setRole={ this.setRole } 
 				/>
-				<Route path="/addcert" render={ (routerProps) => <AddCertForm { ...routerProps } gym_id={ this.state.user.id } addCertToState={ this.addCertToState }/> }/>
 				<Route path="/certQR" render={ (routerProps) => <QRcode { ...routerProps } /> } />
 				<Route path="/verifycert/:hash" render={ (routerProps) =>  <CertificationsContainer  {...routerProps } />} />
 				<Redirect to="/" />
