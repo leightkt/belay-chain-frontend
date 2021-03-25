@@ -103,7 +103,7 @@ class AddCertForm extends Component {
                     email: "" })
             } else {
                 this.props.addCertToState(result)
-                this.props.history.push('/')
+                this.props.routerProps.history.push('/')
             }
             
         })

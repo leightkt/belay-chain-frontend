@@ -8,7 +8,6 @@ function CertCard ({ cert, role }) {
     const timestamp = cert.timestamp
     const date = new Date(timestamp)
 
-    // fix this to run on mount so it doesn't throw and error if the server is slow
     const findIcon = () => {
         switch (cert.data.cert_type) {
             case "Lead":
@@ -20,6 +19,7 @@ function CertCard ({ cert, role }) {
             default:
                 break;
         }
+        
     }
 
     return (

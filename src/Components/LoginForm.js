@@ -88,6 +88,7 @@ class LoginForm extends Component {
 
 
     render() {
+        const { routerProps, setAppUser, setCerts, setRole } = this.props
         return(
             <div>
                 {
@@ -114,7 +115,7 @@ class LoginForm extends Component {
                             <input type="submit" className="form-submit" value="LOG IN" />
                         </form>
                     :
-                    <SignUpForm setAppUser={ this.props.setAppUser } setCerts={ this.props.setCerts } { ...this.props.routerProps }/>
+                    <SignUpForm setAppUser={ setAppUser } setCerts={ setCerts } { ...routerProps }/>
                 }
                 
 
@@ -124,7 +125,7 @@ class LoginForm extends Component {
                     : 
                         null
                 }
-                <button onClick={() => this.props.setRole("")}>HOME</button>
+                <button onClick={() => setRole("")}>HOME</button>
             </div>
         )
     }

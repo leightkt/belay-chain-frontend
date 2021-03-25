@@ -169,6 +169,8 @@ class Profile extends Component {
     }
 
     render(){
+        const { role, certifications } = this.props
+        
         return(
             <>
                 <section className="profile">
@@ -180,7 +182,7 @@ class Profile extends Component {
                                 <button onClick={ this.toggleConfirmDelete }>CANCEL</button>
                             </>
                             : <>
-                                { !this.state.first_name && this.props.role === "member" ? <p>First time here? Click edit to update your information and reset your password.</p> : null }
+                                { !this.state.first_name && role === "member" ? <p>First time here? Click edit to update your information and reset your password.</p> : null }
                                 <form className="update">
                                     { this.displayUser() }
                                     {this.state.editProfile
@@ -204,7 +206,7 @@ class Profile extends Component {
                             </>
                         }
                 </section>
-                <CertificationsContainer certifications={ this.props.certifications } role={ this.props.role }/>
+                <CertificationsContainer certifications={ certifications } role={ role }/>
             </>
         )
     }
