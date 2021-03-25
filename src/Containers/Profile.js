@@ -207,7 +207,10 @@ class Profile extends Component {
                             </>
                         }
                 </section>
-                <Search updateSearchTerm={ updateSearchTerm} searchTerm={ searchTerm }/>
+                { role === "gym" 
+                    ? <Search updateSearchTerm={ updateSearchTerm} searchTerm={ searchTerm }/>
+                    : null 
+                }
                 <CertificationsContainer certifications={ displayedCerts() } role={ role } />
             </>
         )
