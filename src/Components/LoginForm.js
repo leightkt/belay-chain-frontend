@@ -81,6 +81,7 @@ class LoginForm extends Component {
                     this.props.setAppUser(data.user)
                     this.props.setCerts(data.certifications)
                     localStorage.setItem('token', data.token)
+                    this.props.history.push('/')
                 }
             })
 	}
@@ -113,7 +114,7 @@ class LoginForm extends Component {
                             <input type="submit" className="form-submit" value="LOG IN" />
                         </form>
                     :
-                    <SignUpForm setAppUser={ this.props.setAppUser } setCerts={ this.props.setCerts }/>
+                    <SignUpForm setAppUser={ this.props.setAppUser } setCerts={ this.props.setCerts } { ...this.props.routerProps }/>
                 }
                 
 

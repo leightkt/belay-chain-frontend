@@ -3,7 +3,9 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     height: 25rem;
+    margin: 1rem;
 }
 
 canvas {
