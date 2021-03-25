@@ -2,6 +2,7 @@ import './Profile.css'
 import CertificationsContainer from './CertificationsContainer'
 import { Component } from 'react'
 import Climber from '../Assets/climber.jpg'
+import Search from '../Components/Search'
 const backendUsersURL = 'http://localhost:9000/'
 
 class Profile extends Component {
@@ -169,7 +170,7 @@ class Profile extends Component {
     }
 
     render(){
-        const { role, certifications } = this.props
+        const { role, certifications, updateSearchTerm, searchTerm, displayedCerts } = this.props
         
         return(
             <>
@@ -206,7 +207,8 @@ class Profile extends Component {
                             </>
                         }
                 </section>
-                <CertificationsContainer certifications={ certifications } role={ role }/>
+                <Search updateSearchTerm={ updateSearchTerm} searchTerm={ searchTerm }/>
+                <CertificationsContainer certifications={ displayedCerts() } role={ role } />
             </>
         )
     }

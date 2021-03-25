@@ -20,7 +20,8 @@ class App extends Component {
 	state = {
 		role: "",
 		user: {},
-		certifications: []
+		certifications: [],
+		searchTerm: "",
 	}
 
 	componentDidMount() {
@@ -71,7 +72,23 @@ class App extends Component {
 		this.setState({ certifications: [...certifications, newCert]})
 	}
 
-	
+	updateSearchTerm = (event) => {
+		this.setState({
+			searchTerm: event.target.value
+		})
+	}
+
+	displayedCerts = () => {
+		return this.state.certifications.filter(certification => {
+			if (!this.state.searchTerm) {
+				return true
+			} else {
+				return certification.first_name.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+				|| certification.last_name.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+				|| certification.email.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+			}
+		})
+	}
 
 	render() {
 		return (
@@ -112,8 +129,11 @@ class App extends Component {
 				<PrivateRoute
 					path="/" 
 					component={ Profile }
+					updateSearchTerm={ this.updateSearchTerm }
+					searchTerm={ this.state.searchTerm }
 					user={ this.state.user } 
 					certifications={ this.state.certifications } 
+					displayedCerts = { this.displayedCerts }
 					setAppUser={ this.setAppUser } 
 					role={ this.state.role } 
 					setRole={ this.setRole } 
