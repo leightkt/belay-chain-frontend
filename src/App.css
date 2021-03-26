@@ -25,6 +25,7 @@ main {
 }
 
 input[type="submit"] {
+    cursor: pointer;
     border: none;
     background-color: rgba(31,123,190,255);
     font-weight: bold;

@@ -6,7 +6,7 @@ const backendNodeURL = 'http://localhost:3001/'
 class AddANode extends Component {
     state = {
         url: "",
-        message: "",
+        message: ""
     }
 
     handleChange = (event) => {
@@ -17,6 +17,7 @@ class AddANode extends Component {
 
     addNode = (event) => {
         event.preventDefault()
+        event.stopPropagation()
 
         fetch(`${backendNodeURL}register-and-broadcast-node`, {
             method: "POST",
@@ -42,7 +43,7 @@ class AddANode extends Component {
         return (
             <form className="add-a-node" onSubmit={ this.addNode }>
                 <label>Node URL</label>
-                <input name="url" placeholder="NODE URL" value={ this.state.url } onChange={ this.handleChange }/>
+                <input name="url" placeholder="NODE URL" value={ this.state.url } onChange={ this.handleChange } className="url-input" required/>
                 <input type="submit" value="ADD NODE" />
                 { this.state.message ? <p className="errors">{ this.state.message }</p> : null }
             </form>
