@@ -5,3 +5,7 @@
 .admin-button {
     cursor: pointer;
 }
+
+.admin-message {
+    font-size: 2rem;
+}
