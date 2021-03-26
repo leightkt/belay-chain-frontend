@@ -11,7 +11,7 @@ import AddCertForm from './Components/AddCertForm'
 import CertificationsContainer from './Containers/CertificationsContainer';
 import QRcode from './Components/QRcode';
 import PrivateRoute from './Components/PrivateRoute'
-
+import About from './Components/About';
 
 
 const backendUsersURL = 'http://localhost:9000/'
@@ -113,7 +113,10 @@ class App extends Component {
 						(routerProps) => <CertificationsContainer  {...routerProps } /> 
 					}
 				/>
-				
+				<Route
+					path="/about"
+					render={ () => <About /> }
+				/>
 				<PrivateRoute 
 					path="/certQR" 
 					component={ QRcode }
