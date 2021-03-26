@@ -3,7 +3,7 @@ header {
     margin: 0;
     padding: 2rem;
     /* border-bottom: 1px solid rgba(233,112,3,255); */
-    background-image: linear-gradient(to left, rgba(233,112,3,255), white);
+    background-image: linear-gradient(to left, rgba(233,112,3), rgb(254, 192, 90));
 }
 
 h1 {
