@@ -30,6 +30,7 @@ header > p {
     height: 2rem;
     text-align: center;
     margin: 1rem;
+    border-radius: 0.5rem;
 }
 
 .about-link {

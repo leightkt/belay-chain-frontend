@@ -9,6 +9,7 @@
     text-align: center;
     margin: 1rem 1rem 1rem 3rem;
     width: 8rem;
+    border-radius: 0.5rem;
 }
 
 .add-cert-form {

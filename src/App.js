@@ -147,7 +147,7 @@ class App extends Component {
 			</Switch>
 			{
 				this.state.user.id
-				? <button onClick={ this.logOut }>LOG OUT</button>
+				? <button className="logout-button" onClick={ this.logOut }>LOG OUT</button>
 				: null
 			}
 			</main>

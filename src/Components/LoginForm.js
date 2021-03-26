@@ -121,11 +121,11 @@ class LoginForm extends Component {
 
                 { this.state.role === "gym"
                     ? 
-                        <button onClick={ this.handleClick }>{ this.state.signup ? "LOG IN" : "SIGN UP" }</button>
+                        <button className="signup-or-login" onClick={ this.handleClick }>{ this.state.signup ? "LOG IN" : "SIGN UP" }</button>
                     : 
                         null
                 }
-                <button onClick={() => setRole("")}>HOME</button>
+                <button className="home-button" onClick={() => setRole("")}>HOME</button>
             </div>
         )
     }

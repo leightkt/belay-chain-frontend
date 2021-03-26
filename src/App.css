@@ -19,7 +19,7 @@ label {
 main {
     margin: 0;
     padding: 0;
-    min-height: 38rem;
+    min-height: 37rem;
     display: flex;
     flex-direction: column;
 }
@@ -109,6 +109,10 @@ input[type="submit"] {
 }
 
 @media screen and (max-width: 600px) {
+    main {
+        min-height: 0 !important;
+    }
+
     .profile {
         max-width: 15rem !important;
     }
@@ -133,7 +137,7 @@ input[type="submit"] {
     }
 
     .about-title {
-        margin: 1.5rem;
+        margin: 2rem;
     }
 
     h1 {
@@ -153,7 +157,78 @@ input[type="submit"] {
         margin-left: 2rem !important;
     }
 
+    .update > button {
+        margin: 0 !important;
+    }
+
+    .search-form > input {
+        margin: 3rem !important;
+    }
+
     .cert-container {
         margin: 0 !important;
     }
+
+    .back-link {
+        margin: 2rem 2rem 8rem 2rem !important;
+    }
+
+    .logout-button {
+        margin: 2rem;
+    }
+
+    .admin-section {
+        margin-left: 3rem !important;
+    }
+
+    .nodes {
+        margin: 0 !important;
+    }
+
+    .nodes > div {
+        margin: 0 !important;
+    }
+
+    .nodes > div > p {
+        margin: 0 !important;
+    }
+
+    .nodes > div > button {
+        margin: 0 1rem 1rem 0rem !important;
+    }
+
+    .add-a-node {
+        margin: 0 !important;
+    }
+
+    .add-a-node > input {
+        margin: 0 0 1rem 0!important;
+    }
+
+    h4 {
+        font-size: 1.25rem !important;
+    }
+
+    .about-section {
+        text-align: center;
+    }
+
+    .about-div {
+        justify-content: center !important;
+    }
+
+    .home-button {
+        margin: 2rem;
+    }
+
+    .signup-or-login {
+        margin: 0 1rem 0rem 2rem !important;
+    }
+
+    .verify-message {
+        margin-left: 2rem !important;
+        align-self: flex-start !important;
+    }
+
+
 }
