@@ -72,7 +72,7 @@ function CertificationsContainer ({ match }) {
             <section className="cert-container">
                 { loaded && certs ? displayCertifications(certs) : displayCertifications(displayedCerts(certifications)) }
             </section>
-            { certs 
+            { errors || message 
                 ? 
                     <>
                         <p className="verify-message">{ errors ? "Cerification Can Not Be Verified" : null }</p>
