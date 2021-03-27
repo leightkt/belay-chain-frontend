@@ -9,6 +9,8 @@ const backendUsersURL = 'http://localhost:9000/'
 function CertificationsContainer ({ match }) {
     const certifications = useSelector(state => state.certifications)
     const role = useSelector(state => state.role )
+    const searchTerm = useSelector(state => state.searchTerm)
+
     const [ certs, setCerts ] = useState([])
     const [ loaded, setLoad ] = useState(false)
     const [ errors, setErrors ] = useState("")
@@ -37,7 +39,6 @@ function CertificationsContainer ({ match }) {
             })
                 .then(response => response.json())
                 .then(result => {
-                    console.log(result)
                     if (result.errors) {
                         setErrors(result.errors)
                     } else {
@@ -54,11 +55,23 @@ function CertificationsContainer ({ match }) {
 
     }
 
+    const displayedCerts = () => {
+		return certifications.filter(certification => {
+			if (!searchTerm) {
+				return true
+			} else {
+				return certification.first_name.toLowerCase().includes(searchTerm.toLowerCase())
+				|| certification.last_name.toLowerCase().includes(searchTerm.toLowerCase())
+				|| certification.email.toLowerCase().includes(searchTerm.toLowerCase())
+			}
+		})
+	}
+
     return(
         <div className="cert-wrapper">
             <section className="cert-container">
                 { loaded ? displayCertifications(certs) : null}
-                { certifications ? displayCertifications(certifications) : null }
+                { certifications ? displayCertifications(displayedCerts(certifications)) : null }
             </section>
             { certifications 
                 ? null

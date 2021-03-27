@@ -52,18 +52,6 @@ function App () {
 		})
 	}
 
-	const displayedCerts = () => {
-		return certifications.filter(certification => {
-			if (!searchTerm) {
-				return true
-			} else {
-				return certification.first_name.toLowerCase().includes(searchTerm.toLowerCase())
-				|| certification.last_name.toLowerCase().includes(searchTerm.toLowerCase())
-				|| certification.email.toLowerCase().includes(searchTerm.toLowerCase())
-			}
-		})
-	}
-
 	return (
 	<div className="App">
 		<Header />

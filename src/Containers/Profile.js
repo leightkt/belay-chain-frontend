@@ -175,7 +175,7 @@ class Profile extends Component {
     }
 
     render(){
-        const { role, searchTerm, certifications } = this.props
+        const { role } = this.props
         
         return(
             <>
@@ -188,7 +188,7 @@ class Profile extends Component {
                                 <button onClick={ this.toggleConfirmDelete }>CANCEL</button>
                             </>
                             : <>
-                                { !this.state.first_name && role === "member" ? <p className="first-time-user">First time here? Click edit to update your information and reset your password.</p> : null }
+                                { !this.props.user.first_name && role === "member" ? <p className="first-time-user">First time here? Click edit to update your information and reset your password.</p> : null }
                                 <form className="update">
                                     { this.displayUser() }
                                     {this.state.editProfile
@@ -213,12 +213,12 @@ class Profile extends Component {
                         }
                 </section>
                 { role === "gym" 
-                    ? <Search updateSearchTerm={ updateSearchTerm } searchTerm={ searchTerm }/>
+                    ? <Search />
                     : null 
                 }
                 { role === "admin"
                     ? <AdminActivities />
-                    : <CertificationsContainer certifications={ displayedCerts() } role={ role } />
+                    : <CertificationsContainer />
                 }
             </>
         )
@@ -230,7 +230,8 @@ const mapStateToProps = (state) => {
     return {
         role: state.role,
         user: state.user,
-        certifications: state.certifications
+        certifications: state.certifications,
+        searchTerm: state.searchTerm
     }
 }
 
