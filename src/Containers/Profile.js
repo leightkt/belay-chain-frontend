@@ -1,9 +1,13 @@
 import './Profile.css'
 import CertificationsContainer from './CertificationsContainer'
 import { Component } from 'react'
+import { connect } from 'react-redux'
+import { SET_USER, SET_ROLE, UPDATE_SEARCHTERM } from '../Redux/Types'
 import Climber from '../Assets/climber.jpg'
 import Search from '../Components/Search'
 import AdminActivities from './AdminActivities'
+import DeleteAccount from '../Components/DeleteAccount'
+import UpdateForm from '../Components/UpdateForm'
 
 const backendUsersURL = 'http://localhost:9000/'
 
@@ -81,12 +85,13 @@ class Profile extends Component {
     }
 
     toggleEdit = () => {
-        this.setState({ editProfile: !this.state.editProfile })
-        this.setState({ errors: "" })
+        this.setState({ 
+            editProfile: !this.state.editProfile, 
+            errors: ""
+        })
     }
 
     userUpdate = () => {
-        console.log("hit")
         const userdata = {}
         for (let key in this.state){
             if(key !== "editProfile") {
@@ -113,7 +118,7 @@ class Profile extends Component {
                     if (data.errors) {
                         this.setState({ errors: data.errors[0] })
                     } else {
-                        this.props.setAppUser(data.user)
+                        this.props.setUser(data.user)
                         this.setState({ errors: "" })
                     }
                 })
@@ -160,7 +165,7 @@ class Profile extends Component {
                     this.setState({ errors: data.errors[0] })
                 } else {
                     this.setState({ errors: "" })
-                    this.props.setAppUser({})
+                    this.props.setUser({})
                     this.props.setRole("")
                     localStorage.removeItem('token')
                 }
@@ -172,55 +177,68 @@ class Profile extends Component {
     }
 
     render(){
-        const { role, updateSearchTerm, searchTerm, displayedCerts } = this.props
+        const { role } = this.props
         
         return(
             <>
                 <section className="profile">
+
                     <img className="climber-image hide-on-small" src={ Climber} alt="a climber haning from a rope in gym" />
+
                         { this.state.confirmDelete
-                            ? <>
-                                <p>Are you sure you want to delete your account?</p>
-                                <button onClick={ this.deleteAccount }>CONFIRM</button>
-                                <button onClick={ this.toggleConfirmDelete }>CANCEL</button>
-                            </>
-                            : <>
-                                { !this.state.first_name && role === "member" ? <p>First time here? Click edit to update your information and reset your password.</p> : null }
-                                <form className="update">
-                                    { this.displayUser() }
-                                    {this.state.editProfile
-                                        ?   <>
-                                                <label>Password</label>
-                                                <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } placeholder="Password" className="password-edit"/>
-                                                <div className="update-div">
-                                                    <button onClick={ this.userUpdate }>UPDATE</button>
-                                                    <button onClick={ this.toggleEdit }>CANCEL</button>
-                                                    <button onClick={ this.askforDeleteConfirmation }>DELETE</button>
-                                                </div>
-                                                
-                                            </>
-                                        : <button class="edit" onClick={ this.toggleEdit }>EDIT</button>
+                            ? 
+                                <DeleteAccount deleteAccount={ this.deleteAccount } toggleConfirmDelete={ this.toggleConfirmDelete }/>
+                            : 
+                                <>
+                                    { !this.props.user.first_name && role === "member" 
+                                        ? 
+                                            <p className="first-time-user">First time here? Click edit to update your information and reset your password.</p> 
+                                        : null 
                                     }
-                                    { this.state.errors
-                                        ? <p className="errors">{ this.state.errors }</p>
-                                        : null
-                                    }
-                                </form>
-                            </>
+                                    <UpdateForm 
+                                        editProfile={ this.state.editProfile }
+                                        displayUser={ this.displayUser }
+                                        password={ this.state.password }
+                                        handleChange={ this.handleChange }
+                                        userUpdate = { this.userUpdate }
+                                        toggleEdit={ this.toggleEdit }
+                                        askforDeleteConfirmation={ this.askforDeleteConfirmation }
+                                        errors={ this.state.errors }/>
+                                </>
                         }
+
                 </section>
+
                 { role === "gym" 
-                    ? <Search updateSearchTerm={ updateSearchTerm} searchTerm={ searchTerm }/>
+                    ? <Search />
                     : null 
                 }
+
                 { role === "admin"
                     ? <AdminActivities />
-                    : <CertificationsContainer certifications={ displayedCerts() } role={ role } />
+                    : <CertificationsContainer />
                 }
+
             </>
         )
     }
     
 }
 
-export default Profile
+const mapStateToProps = (state) => {
+    return {
+        role: state.role,
+        user: state.user,
+        certifications: state.certifications,
+        searchTerm: state.searchTerm
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setUser: (user) => dispatch({ type: SET_USER, user }),
+        setRole: (role) => dispatch({ type: SET_ROLE, role })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)

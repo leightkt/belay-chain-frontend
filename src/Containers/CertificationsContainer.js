@@ -2,10 +2,15 @@ import CertCard from '../Components/CertCard'
 import './CertificationsContainer.css'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const backendUsersURL = 'http://localhost:9000/'
 
-function CertificationsContainer ({ certifications, role, match }) {
+function CertificationsContainer ({ match }) {
+    const certifications = useSelector(state => state.certifications)
+    const role = useSelector(state => state.role )
+    const searchTerm = useSelector(state => state.searchTerm)
+
     const [ certs, setCerts ] = useState([])
     const [ loaded, setLoad ] = useState(false)
     const [ errors, setErrors ] = useState("")
@@ -34,7 +39,6 @@ function CertificationsContainer ({ certifications, role, match }) {
             })
                 .then(response => response.json())
                 .then(result => {
-                    console.log(result)
                     if (result.errors) {
                         setErrors(result.errors)
                     } else {
@@ -51,21 +55,34 @@ function CertificationsContainer ({ certifications, role, match }) {
 
     }
 
+    const displayedCerts = () => {
+		return certifications.filter(certification => {
+			if (!searchTerm) {
+				return true
+			} else {
+				return certification.first_name.toLowerCase().includes(searchTerm.toLowerCase())
+				|| certification.last_name.toLowerCase().includes(searchTerm.toLowerCase())
+				|| certification.email.toLowerCase().includes(searchTerm.toLowerCase())
+			}
+		})
+	}
+
     return(
         <div className="cert-wrapper">
             <section className="cert-container">
-                { loaded ? displayCertifications(certs) : null}
-                { certifications ? displayCertifications(certifications) : null }
+                { loaded && certs ? displayCertifications(certs) : displayCertifications(displayedCerts(certifications)) }
             </section>
-            { certifications 
-                ? null
-                :
+
+            { errors || message 
+                ? 
                     <>
                         <p className="verify-message">{ errors ? "Cerification Can Not Be Verified" : null }</p>
                         <p className="verify-message">{ message ? message : null }</p>
                         <Link className="back-link" to="/">BACK</Link>
                     </>
+                : null
             }
+            
         </div>
     )
 }

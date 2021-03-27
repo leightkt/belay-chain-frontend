@@ -1,6 +1,8 @@
 import './App.css';
-import { Component } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { SET_USER, SET_ROLE, SET_CERTIFICATIONS } from './Redux/Types'
 
 
 import Header from './Components/Header';
@@ -16,19 +18,12 @@ import About from './Components/About';
 
 const backendUsersURL = 'http://localhost:9000/'
 
-class App extends Component {
-	state = {
-		role: "",
-		user: {},
-		certifications: [],
-		searchTerm: "",
-	}
+function App () {
 
-	componentDidMount() {
-		this.authoriz_user()
-	}
-	
-	authoriz_user = () => {
+	const dispatch = useDispatch()
+	const user = useSelector(state => state.user)
+
+	const authoriz_user = () => {
 		if(localStorage.getItem("token")) {
 			fetch(`${backendUsersURL}profile`, {
 				method: "GET",
@@ -38,123 +33,48 @@ class App extends Component {
 			})
 			.then(response => response.json())
 			.then(data => {
-				this.setAppUser(data.user)
-				this.setRole(data.user.role)
-				this.setCerts(data.certifications)
+				dispatch({ type:  SET_CERTIFICATIONS, certifications: data.certifications })
+				dispatch({ type: SET_USER, user: data.user })
+				dispatch({ type: SET_ROLE, role: data.user.role })
 			})
 		}
 	}
 
-	setCerts = (certifications) => {
-		this.setState({ certifications })
-	}
+	useEffect(authoriz_user, [])
 
-	setRole = (role) => {
-		this.setState({ role })
-	}
-
-	setAppUser = (user) => {
-		this.setState({ user })
-	}
-
-	logOut = () => {
+	const logOut = () => {
 		localStorage.removeItem('token')
-		this.setState({
-				id: "",
-				role: "",
-				user: {},
-				certifications: []
-		})
+		dispatch({ type:  SET_CERTIFICATIONS, certifications: [] })
+		dispatch({ type: SET_USER, user: {} })
+		dispatch({ type: SET_ROLE, role: "" })
 	}
 
-	addCertToState = (newCert) => {
-		const certifications = this.state.certifications.filter(certification => certification.index !== newCert.index)
-		this.setState({ certifications: [...certifications, newCert]})
-	}
-
-	updateSearchTerm = (event) => {
-		this.setState({
-			searchTerm: event.target.value
-		})
-	}
-
-	displayedCerts = () => {
-		return this.state.certifications.filter(certification => {
-			if (!this.state.searchTerm) {
-				return true
-			} else {
-				return certification.first_name.toLowerCase().includes(this.state.searchTerm.toLowerCase())
-				|| certification.last_name.toLowerCase().includes(this.state.searchTerm.toLowerCase())
-				|| certification.email.toLowerCase().includes(this.state.searchTerm.toLowerCase())
-			}
-		})
-	}
-
-	render() {
-		return (
+	return (
 		<div className="App">
-			<Header	role={ this.state.role } userID={ this.state.user.id }/>
+			<Header />
 			<main>
 			<Switch>
+				<Route path="/login" render={(routerProps) => <LoginContainer { ...routerProps }/> } />
 
-				<Route 
-					path="/login" 
-					render={(routerProps) => <LoginContainer	
-							setRole={ this.setRole } 
-							role={ this.state.role } 
-							setAppUser={ this.setAppUser } 
-							setCerts={ this.setCerts }
-							{ ...routerProps }/> } 
-				/>
+				<Route path="/verifycert/:hash" render={ (routerProps) => <CertificationsContainer  {...routerProps } /> } />
 
-				<Route 
-					path="/verifycert/:hash" 
-					render={ 
-						(routerProps) => <CertificationsContainer  {...routerProps } /> 
-					}
-				/>
-				<Route
-					path="/about"
-					render={ () => <About /> }
-				/>
-				<PrivateRoute 
-					path="/certQR" 
-					component={ QRcode }
-				/>
+				<Route path="/about" render={ () => <About /> } />
 
-				<PrivateRoute 
-					path="/addcert" 
-					component={ AddCertForm }
-					gym_id={ this.state.user.id } 
-					addCertToState={ this.addCertToState }
-				/> 
+				<PrivateRoute path="/certQR" component={ QRcode } />
 
-				<PrivateRoute
-					path="/" 
-					component={ Profile }
-					updateSearchTerm={ this.updateSearchTerm }
-					searchTerm={ this.state.searchTerm }
-					user={ this.state.user } 
-					certifications={ this.state.certifications } 
-					displayedCerts = { this.displayedCerts }
-					setAppUser={ this.setAppUser } 
-					role={ this.state.role } 
-					setRole={ this.setRole } 
-				/>
-				
+				<PrivateRoute path="/addcert" component={ AddCertForm } /> 
+
+				<PrivateRoute path="/" component={ Profile } />
+
 				<Redirect to="/" />
 
 			</Switch>
-			{
-				this.state.user.id
-				? <button className="logout-button" onClick={ this.logOut }>LOG OUT</button>
-				: null
-			}
+			{ user.id ? <button className="logout-button" onClick={ logOut }>LOG OUT</button> : null }
 			</main>
 			<Footer	/>
 		</div>
-		);
-	}
+	);
+	
 }
 
 export default App;

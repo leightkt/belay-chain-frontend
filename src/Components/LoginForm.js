@@ -1,21 +1,19 @@
 import './LoginForm.css'
 import { Component } from 'react'
+import { connect } from 'react-redux'
 import SignUpForm from './SignUpForm'
+import { SET_USER, SET_ROLE, SET_CERTIFICATIONS } from '../Redux/Types'
 const backendUsersURL = 'http://localhost:9000/'
 
 class LoginForm extends Component {
-
-
     state = {
         username: "",
         password: "",
         email: "",
-        signup: false,
         role: this.props.role, 
         errors: ""
     }
 
-    
 
     handleChange = (event) => {
         let { name, value } = event.target
@@ -35,9 +33,7 @@ class LoginForm extends Component {
         }
     }
 
-    handleClick = (event) => {
-        this.setState({ signup: !this.state.signup })
-    }
+    
 
     login = (event) => {
         event.preventDefault()
@@ -78,7 +74,7 @@ class LoginForm extends Component {
                         role: "",
                         errors: ""
                     })
-                    this.props.setAppUser(data.user)
+                    this.props.setUser(data.user)
                     this.props.setCerts(data.certifications)
                     localStorage.setItem('token', data.token)
                     this.props.history.push('/')
@@ -88,48 +84,44 @@ class LoginForm extends Component {
 
 
     render() {
-        const { routerProps, setAppUser, setCerts, setRole } = this.props
         return(
-            <div>
-                {
-                    !this.state.signup
-                    ?
-                        <form onSubmit={ this.login }>
-                            { this.state.role === "admin"
-                                ?   <>
-                                        <label>Username:</label>
-                                        <input type="text" name="username" value={ this.state.username } onChange={ this.handleChange } placeholder="USERNAME"/>
-                                    </>
-                                :   <>
-                                        <label>Email:</label>
-                                        <input type="email" name="email" value={ this.state.email } onChange={ this.handleChange } placeholder="EMAIL"/>
-                                    </>
-                            }
-                            
-                            <label>Password:</label>
-                            <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } placeholder="PASSWORD"/>
-                            { this.state.errors
-                                ? <p className="errors">{ this.state.errors }</p>
-                                : null
-                            }
-                            <input type="submit" className="form-submit" value="LOG IN" />
-                        </form>
-                    :
-                    <SignUpForm setAppUser={ setAppUser } setCerts={ setCerts } { ...routerProps }/>
+            <form onSubmit={ this.login }>
+                { this.state.role === "admin"
+                    ?   <>
+                            <label>Username:</label>
+                            <input type="text" name="username" value={ this.state.username } onChange={ this.handleChange } placeholder="USERNAME"/>
+                        </>
+                    :   <>
+                            <label>Email:</label>
+                            <input type="email" name="email" value={ this.state.email } onChange={ this.handleChange } placeholder="EMAIL"/>
+                        </>
                 }
                 
-
-                { this.state.role === "gym"
-                    ? 
-                        <button className="signup-or-login" onClick={ this.handleClick }>{ this.state.signup ? "LOG IN" : "SIGN UP" }</button>
-                    : 
-                        null
+                <label>Password:</label>
+                <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } placeholder="PASSWORD"/>
+                { this.state.errors
+                    ? <p className="errors">{ this.state.errors }</p>
+                    : null
                 }
-                <button className="home-button" onClick={() => setRole("")}>HOME</button>
-            </div>
+                <input type="submit" className="form-submit" value="LOG IN" />
+            </form>
         )
     }
     
 }
 
-export default LoginForm
+const mapStateToProps = (state) => {
+    return {
+        role: state.role
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setCerts: (certifications) => dispatch({ type: SET_CERTIFICATIONS, certifications }),
+        setUser: (user) => dispatch({ type: SET_USER, user }),
+        setRole: (role) => dispatch({ type: SET_ROLE, role })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)

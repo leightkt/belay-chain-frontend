@@ -1,6 +1,8 @@
 import './AddCertForm.css'
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { ADD_CERTIFICATION } from '../Redux/Types'
 const backendUsersURL = 'http://localhost:9000/'
 
 class AddCertForm extends Component {
@@ -102,7 +104,7 @@ class AddCertForm extends Component {
                     member_id: "",
                     email: "" })
             } else {
-                this.props.addCertToState(result)
+                this.props.addCert(result)
                 this.props.routerProps.history.push('/')
             }
             
@@ -145,4 +147,16 @@ class AddCertForm extends Component {
     }
 }
 
-export default AddCertForm
+const mapStateToProps = (state) => {
+    return {
+        gym_id: state.user.id
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addCert: (certification) => dispatch({ type: ADD_CERTIFICATION, certification })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddCertForm)
