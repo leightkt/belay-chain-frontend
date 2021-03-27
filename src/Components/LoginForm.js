@@ -1,11 +1,10 @@
 import './LoginForm.css'
 import { Component } from 'react'
+import { connect } from 'react-redux'
 import SignUpForm from './SignUpForm'
 const backendUsersURL = 'http://localhost:9000/'
 
 class LoginForm extends Component {
-
-
     state = {
         username: "",
         password: "",
@@ -15,7 +14,6 @@ class LoginForm extends Component {
         errors: ""
     }
 
-    
 
     handleChange = (event) => {
         let { name, value } = event.target
@@ -78,7 +76,7 @@ class LoginForm extends Component {
                         role: "",
                         errors: ""
                     })
-                    this.props.setAppUser(data.user)
+                    this.props.setUser(data.user)
                     this.props.setCerts(data.certifications)
                     localStorage.setItem('token', data.token)
                     this.props.history.push('/')
@@ -88,7 +86,7 @@ class LoginForm extends Component {
 
 
     render() {
-        const { routerProps, setAppUser, setCerts, setRole } = this.props
+        const { routerProps } = this.props
         return(
             <div>
                 {
@@ -115,7 +113,7 @@ class LoginForm extends Component {
                             <input type="submit" className="form-submit" value="LOG IN" />
                         </form>
                     :
-                    <SignUpForm setAppUser={ setAppUser } setCerts={ setCerts } { ...routerProps }/>
+                    <SignUpForm { ...routerProps }/>
                 }
                 
 
@@ -125,11 +123,25 @@ class LoginForm extends Component {
                     : 
                         null
                 }
-                <button className="home-button" onClick={() => setRole("")}>HOME</button>
+                <button className="home-button" onClick={() => this.props.setRole("")}>HOME</button>
             </div>
         )
     }
     
 }
 
-export default LoginForm
+const mapStateToProps = (state) => {
+    return {
+        role: state.role
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setCerts: (certifications) => dispatch({ type: "SET_CERTIFICATIONS", certifications }),
+        setUser: (user) => dispatch({ type: "SET_USER", user }),
+        setRole: (role) => dispatch({ type: "SET_ROLE", role })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
