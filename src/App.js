@@ -44,12 +44,9 @@ function App () {
 
 	const logOut = () => {
 		localStorage.removeItem('token')
-		this.setState({
-				id: "",
-				role: "",
-				user: {},
-				certifications: []
-		})
+		dispatch({ type:  SET_CERTIFICATIONS, certifications: [] })
+		dispatch({ type: SET_USER, user: {} })
+		dispatch({ type: SET_ROLE, role: "" })
 	}
 
 	return (

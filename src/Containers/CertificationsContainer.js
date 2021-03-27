@@ -70,17 +70,16 @@ function CertificationsContainer ({ match }) {
     return(
         <div className="cert-wrapper">
             <section className="cert-container">
-                { loaded ? displayCertifications(certs) : null}
-                { certifications ? displayCertifications(displayedCerts(certifications)) : null }
+                { loaded && certs ? displayCertifications(certs) : displayCertifications(displayedCerts(certifications)) }
             </section>
-            { certifications 
-                ? null
-                :
+            { certs 
+                ? 
                     <>
                         <p className="verify-message">{ errors ? "Cerification Can Not Be Verified" : null }</p>
                         <p className="verify-message">{ message ? message : null }</p>
                         <Link className="back-link" to="/">BACK</Link>
                     </>
+                : null
             }
         </div>
     )
