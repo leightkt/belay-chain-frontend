@@ -1,7 +1,10 @@
 import './Header.css'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-function Header ({ role, userID }) {
+function Header () {
+    const role = useSelector(state => state.role)
+    const userID = useSelector(state => state.user.id)
 
     return(
         <header>
