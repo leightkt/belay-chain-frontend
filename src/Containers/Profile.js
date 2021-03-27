@@ -182,35 +182,43 @@ class Profile extends Component {
         return(
             <>
                 <section className="profile">
+
                     <img className="climber-image hide-on-small" src={ Climber} alt="a climber haning from a rope in gym" />
+
                         { this.state.confirmDelete
-                            ? <DeleteAccount deleteAccount={ this.deleteAccount } toggleConfirmDelete={ this.toggleConfirmDelete }/>
-                            : <>
-                                { !this.props.user.first_name && role === "member" 
-                                    ? 
-                                        <p className="first-time-user">First time here? Click edit to update your information and reset your password.</p> 
-                                    : null 
-                                }
-                                <UpdateForm 
-                                    editProfile={ this.state.editProfile }
-                                    displayUser={ this.displayUser }
-                                    password={ this.state.password }
-                                    handleChange={ this.handleChange }
-                                    userUpdate = { this.userUpdate }
-                                    toggleEdit={ this.toggleEdit }
-                                    askforDeleteConfirmation={ this.askforDeleteConfirmation }
-                                    errors={ this.state.errors }/>
-                            </>
+                            ? 
+                                <DeleteAccount deleteAccount={ this.deleteAccount } toggleConfirmDelete={ this.toggleConfirmDelete }/>
+                            : 
+                                <>
+                                    { !this.props.user.first_name && role === "member" 
+                                        ? 
+                                            <p className="first-time-user">First time here? Click edit to update your information and reset your password.</p> 
+                                        : null 
+                                    }
+                                    <UpdateForm 
+                                        editProfile={ this.state.editProfile }
+                                        displayUser={ this.displayUser }
+                                        password={ this.state.password }
+                                        handleChange={ this.handleChange }
+                                        userUpdate = { this.userUpdate }
+                                        toggleEdit={ this.toggleEdit }
+                                        askforDeleteConfirmation={ this.askforDeleteConfirmation }
+                                        errors={ this.state.errors }/>
+                                </>
                         }
+
                 </section>
+
                 { role === "gym" 
                     ? <Search />
                     : null 
                 }
+
                 { role === "admin"
                     ? <AdminActivities />
                     : <CertificationsContainer />
                 }
+
             </>
         )
     }

@@ -10,7 +10,6 @@ class LoginForm extends Component {
         username: "",
         password: "",
         email: "",
-        signup: false,
         role: this.props.role, 
         errors: ""
     }
@@ -34,9 +33,7 @@ class LoginForm extends Component {
         }
     }
 
-    handleClick = (event) => {
-        this.setState({ signup: !this.state.signup })
-    }
+    
 
     login = (event) => {
         event.preventDefault()
@@ -87,45 +84,27 @@ class LoginForm extends Component {
 
 
     render() {
-        const { routerProps } = this.props
         return(
-            <div>
-                {
-                    !this.state.signup
-                    ?
-                        <form onSubmit={ this.login }>
-                            { this.state.role === "admin"
-                                ?   <>
-                                        <label>Username:</label>
-                                        <input type="text" name="username" value={ this.state.username } onChange={ this.handleChange } placeholder="USERNAME"/>
-                                    </>
-                                :   <>
-                                        <label>Email:</label>
-                                        <input type="email" name="email" value={ this.state.email } onChange={ this.handleChange } placeholder="EMAIL"/>
-                                    </>
-                            }
-                            
-                            <label>Password:</label>
-                            <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } placeholder="PASSWORD"/>
-                            { this.state.errors
-                                ? <p className="errors">{ this.state.errors }</p>
-                                : null
-                            }
-                            <input type="submit" className="form-submit" value="LOG IN" />
-                        </form>
-                    :
-                    <SignUpForm { ...routerProps }/>
+            <form onSubmit={ this.login }>
+                { this.state.role === "admin"
+                    ?   <>
+                            <label>Username:</label>
+                            <input type="text" name="username" value={ this.state.username } onChange={ this.handleChange } placeholder="USERNAME"/>
+                        </>
+                    :   <>
+                            <label>Email:</label>
+                            <input type="email" name="email" value={ this.state.email } onChange={ this.handleChange } placeholder="EMAIL"/>
+                        </>
                 }
                 
-
-                { this.state.role === "gym"
-                    ? 
-                        <button className="signup-or-login" onClick={ this.handleClick }>{ this.state.signup ? "LOG IN" : "SIGN UP" }</button>
-                    : 
-                        null
+                <label>Password:</label>
+                <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } placeholder="PASSWORD"/>
+                { this.state.errors
+                    ? <p className="errors">{ this.state.errors }</p>
+                    : null
                 }
-                <button className="home-button" onClick={() => this.props.setRole("")}>HOME</button>
-            </div>
+                <input type="submit" className="form-submit" value="LOG IN" />
+            </form>
         )
     }
     
