@@ -78,7 +78,7 @@ function App () {
 	return (
 	<div className="App">
 		<Header />
-		{/*<main>
+		<main>
 		<Switch>
 
 			<Route 
@@ -91,7 +91,7 @@ function App () {
 						{ ...routerProps }/> } 
 			/>
 
-			<Route 
+			{/* <Route 
 				path="/verifycert/:hash" 
 				render={ 
 					(routerProps) => <CertificationsContainer  {...routerProps } /> 
@@ -126,7 +126,7 @@ function App () {
 				setRole={ this.setRole } 
 			/>
 			
-			<Redirect to="/" />
+			<Redirect to="/" /> */}
 
 		</Switch>
 		{
@@ -135,7 +135,7 @@ function App () {
 			: null
 		}
 		</main>
-		<Footer	/> */}
+		<Footer	/>
 	</div>
 	);
 }

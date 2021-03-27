@@ -1,14 +1,16 @@
+import './LoginContainer.css'
 import LogInButtonSection from './LogInButtonSection'
 import LoginForm from '../Components/LoginForm'
-import './LoginContainer.css'
+import { useSelector } from 'react-redux'
 
-function LoginContainer ({ setRole, role, setAppUser, setCerts, ...routerProps }) {
+function LoginContainer ({ ...routerProps }) {
+    const role = useSelector(state => state.role)
 
     return(
         <section>
             {role
-            ? <LoginForm  role={ role } setAppUser={ setAppUser } setRole={ setRole } setCerts={ setCerts } { ...routerProps }/>
-            : <LogInButtonSection setRole={ setRole } />
+            ? <LoginForm { ...routerProps }/>
+            : <LogInButtonSection />
             }
         </section>
     )

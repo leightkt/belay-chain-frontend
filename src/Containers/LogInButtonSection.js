@@ -1,17 +1,19 @@
 import './LogInButtonSection.css'
+import { useDispatch } from 'react-redux'
 
-function LogInButtonSection ({ setRole }) {
+function LogInButtonSection () {
+    const dispatch = useDispatch()
 
     const handleClick = (event) => {
         switch(event.target.id) {
             case "gym-button":
-                setRole("gym")
+                dispatch({ type: "SET_ROLE", role: "gym" })
                 break
             case "member-button":
-                setRole("member")
+                dispatch({ type: "SET_ROLE", role: "member" })
                 break
             case "admin-button":
-                setRole("admin")
+                dispatch({ type: "SET_ROLE", role: "admin" })
                 break
             default:
                 return null
