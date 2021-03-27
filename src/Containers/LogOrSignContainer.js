@@ -21,7 +21,8 @@ function LogOrSignContainer ({ ...routerProps }) {
                         <LoginForm { ...routerProps }/>
                     :
                         <SignUpForm { ...routerProps } />
-                }
+            }
+            
             { role === "gym"
                     ? 
                         <button className="signup-or-login" onClick={ handleClick }>{ signup ? "LOG IN" : "SIGN UP" }</button>

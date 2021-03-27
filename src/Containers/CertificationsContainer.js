@@ -72,6 +72,7 @@ function CertificationsContainer ({ match }) {
             <section className="cert-container">
                 { loaded && certs ? displayCertifications(certs) : displayCertifications(displayedCerts(certifications)) }
             </section>
+
             { errors || message 
                 ? 
                     <>
@@ -81,6 +82,7 @@ function CertificationsContainer ({ match }) {
                     </>
                 : null
             }
+            
         </div>
     )
 }
