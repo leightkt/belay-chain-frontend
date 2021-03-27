@@ -91,17 +91,18 @@ function App () {
 					(routerProps) => <CertificationsContainer  {...routerProps } /> 
 				}
 			/>
-			
-			{/* <Route
+
+			<Route
 				path="/about"
 				render={ () => <About /> }
 			/>
+
 			<PrivateRoute 
 				path="/certQR" 
 				component={ QRcode }
 			/>
 
-			<PrivateRoute 
+			{/* <PrivateRoute 
 				path="/addcert" 
 				component={ AddCertForm }
 				gym_id={ this.state.user.id } 
@@ -119,9 +120,9 @@ function App () {
 				setAppUser={ this.setAppUser } 
 				role={ this.state.role } 
 				setRole={ this.setRole } 
-			/>
+			/> */}
 			
-			<Redirect to="/" /> */}
+			<Redirect to="/" />
 
 		</Switch>
 		{
