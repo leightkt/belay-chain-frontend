@@ -1,5 +1,4 @@
 import './App.css';
-// import { Component } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -83,12 +82,7 @@ function App () {
 
 			<Route 
 				path="/login" 
-				render={(routerProps) => <LoginContainer	
-						setRole={ this.setRole } 
-						role={ this.state.role } 
-						setAppUser={ this.setAppUser } 
-						setCerts={ this.setCerts }
-						{ ...routerProps }/> } 
+				render={(routerProps) => <LoginContainer { ...routerProps }/> } 
 			/>
 
 			{/* <Route 
