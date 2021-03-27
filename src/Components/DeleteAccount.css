@@ -1,0 +1,9 @@
+.delete-account > button {
+    height: 2rem;
+    width: 5.25rem;
+    justify-self: flex-start;
+    align-self: flex-start;
+    margin: 0.5rem 1rem;
+    font-weight: normal;
+    cursor: pointer;
+}

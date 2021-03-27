@@ -19,8 +19,8 @@ import About from './Components/About';
 const backendUsersURL = 'http://localhost:9000/'
 
 function App () {
+
 	const dispatch = useDispatch()
-	const certifications = useSelector(state => state.certifications)
 	const user = useSelector(state => state.user)
 
 	const authoriz_user = () => {
@@ -50,30 +50,31 @@ function App () {
 	}
 
 	return (
-	<div className="App">
-		<Header />
-		<main>
-		<Switch>
-			<Route path="/login" render={(routerProps) => <LoginContainer { ...routerProps }/> } />
+		<div className="App">
+			<Header />
+			<main>
+			<Switch>
+				<Route path="/login" render={(routerProps) => <LoginContainer { ...routerProps }/> } />
 
-			<Route path="/verifycert/:hash" render={ (routerProps) => <CertificationsContainer  {...routerProps } /> } />
+				<Route path="/verifycert/:hash" render={ (routerProps) => <CertificationsContainer  {...routerProps } /> } />
 
-			<Route path="/about" render={ () => <About /> } />
+				<Route path="/about" render={ () => <About /> } />
 
-			<PrivateRoute path="/certQR" component={ QRcode } />
+				<PrivateRoute path="/certQR" component={ QRcode } />
 
-			<PrivateRoute path="/addcert" component={ AddCertForm } /> 
+				<PrivateRoute path="/addcert" component={ AddCertForm } /> 
 
-			<PrivateRoute path="/" component={ Profile } />
+				<PrivateRoute path="/" component={ Profile } />
 
-			<Redirect to="/" />
+				<Redirect to="/" />
 
-		</Switch>
-		{ user.id ? <button className="logout-button" onClick={ logOut }>LOG OUT</button> : null }
-		</main>
-		<Footer	/>
-	</div>
+			</Switch>
+			{ user.id ? <button className="logout-button" onClick={ logOut }>LOG OUT</button> : null }
+			</main>
+			<Footer	/>
+		</div>
 	);
+	
 }
 
 export default App;

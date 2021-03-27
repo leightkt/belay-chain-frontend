@@ -6,6 +6,8 @@ import { SET_USER, SET_ROLE, UPDATE_SEARCHTERM } from '../Redux/Types'
 import Climber from '../Assets/climber.jpg'
 import Search from '../Components/Search'
 import AdminActivities from './AdminActivities'
+import DeleteAccount from '../Components/DeleteAccount'
+import UpdateForm from '../Components/UpdateForm'
 
 const backendUsersURL = 'http://localhost:9000/'
 
@@ -182,33 +184,22 @@ class Profile extends Component {
                 <section className="profile">
                     <img className="climber-image hide-on-small" src={ Climber} alt="a climber haning from a rope in gym" />
                         { this.state.confirmDelete
-                            ? <>
-                                <p>Are you sure you want to delete your account?</p>
-                                <button onClick={ this.deleteAccount }>CONFIRM</button>
-                                <button onClick={ this.toggleConfirmDelete }>CANCEL</button>
-                            </>
+                            ? <DeleteAccount deleteAccount={ this.deleteAccount } toggleConfirmDelete={ this.toggleConfirmDelete }/>
                             : <>
-                                { !this.props.user.first_name && role === "member" ? <p className="first-time-user">First time here? Click edit to update your information and reset your password.</p> : null }
-                                <form className="update">
-                                    { this.displayUser() }
-                                    {this.state.editProfile
-                                        ?   <>
-                                                <label>Password</label>
-                                                <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange } placeholder="Password" className="password-edit"/>
-                                                <div className="update-div">
-                                                    <button onClick={ this.userUpdate }>UPDATE</button>
-                                                    <button onClick={ this.toggleEdit }>CANCEL</button>
-                                                    <button onClick={ this.askforDeleteConfirmation }>DELETE</button>
-                                                </div>
-                                                
-                                            </>
-                                        : <button class="edit" onClick={ this.toggleEdit }>EDIT</button>
-                                    }
-                                    { this.state.errors
-                                        ? <p className="errors">{ this.state.errors }</p>
-                                        : null
-                                    }
-                                </form>
+                                { !this.props.user.first_name && role === "member" 
+                                    ? 
+                                        <p className="first-time-user">First time here? Click edit to update your information and reset your password.</p> 
+                                    : null 
+                                }
+                                <UpdateForm 
+                                    editProfile={ this.state.editProfile }
+                                    displayUser={ this.displayUser }
+                                    password={ this.state.password }
+                                    handleChange={ this.handleChange }
+                                    userUpdate = { this.userUpdate }
+                                    toggleEdit={ this.toggleEdit }
+                                    askforDeleteConfirmation={ this.askforDeleteConfirmation }
+                                    errors={ this.state.errors }/>
                             </>
                         }
                 </section>
