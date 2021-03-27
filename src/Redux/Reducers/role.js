@@ -1,7 +1,8 @@
+import { SET_ROLE } from '../Types'
 
 const role = (state="", action) => {
 	switch (action.type) {
-		case "SET_ROLE":
+		case SET_ROLE:
 			return action.role
 		default:
 			return state

@@ -2,6 +2,7 @@ import './LoginForm.css'
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import SignUpForm from './SignUpForm'
+import { SET_USER, SET_ROLE, SET_CERTIFICATIONS } from '../Redux/Types'
 const backendUsersURL = 'http://localhost:9000/'
 
 class LoginForm extends Component {
@@ -138,9 +139,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCerts: (certifications) => dispatch({ type: "SET_CERTIFICATIONS", certifications }),
-        setUser: (user) => dispatch({ type: "SET_USER", user }),
-        setRole: (role) => dispatch({ type: "SET_ROLE", role })
+        setCerts: (certifications) => dispatch({ type: SET_CERTIFICATIONS, certifications }),
+        setUser: (user) => dispatch({ type: SET_USER, user }),
+        setRole: (role) => dispatch({ type: SET_ROLE, role })
     }
 }
 

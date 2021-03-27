@@ -1,6 +1,7 @@
 import './SignUpForm.css'
 import { Component } from 'react'
 import { connect } from 'react-redux'
+import { SET_USER, SET_CERTIFICATIONS } from '../Redux/Types'
 const backendUsersURL = 'http://localhost:9000/'
 
 class SignUpForm extends Component {
@@ -130,8 +131,8 @@ class SignUpForm extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCerts: (certifications) => dispatch({ type: "SET_CERTIFICATIONS", certifications }),
-        setUser: (user) => dispatch({ type: "SET_USER", user })
+        setCerts: (certifications) => dispatch({ type: SET_CERTIFICATIONS, certifications }),
+        setUser: (user) => dispatch({ type: SET_USER, user })
     }
 }
 

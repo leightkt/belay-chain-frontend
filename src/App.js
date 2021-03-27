@@ -2,6 +2,7 @@ import './App.css';
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { SET_USER, SET_ROLE, SET_CERTIFICATIONS } from './Redux/Types'
 
 
 import Header from './Components/Header';
@@ -21,6 +22,7 @@ function App () {
 	const dispatch = useDispatch()
 	const certifications = useSelector(state => state.certifications)
 	const searchTerm = useSelector(state => state.searchTerm)
+	const user = useSelector(state => state.user)
 
 	const authoriz_user = () => {
 		if(localStorage.getItem("token")) {
@@ -32,9 +34,9 @@ function App () {
 			})
 			.then(response => response.json())
 			.then(data => {
-				dispatch({ type:  "SET_CERTIFICATIONS", certifications: data.certifications })
-				dispatch({ type: "SET_USER", user: data.user })
-				dispatch({ type: "SET_ROLE", role: data.user.role })
+				dispatch({ type:  SET_CERTIFICATIONS, certifications: data.certifications })
+				dispatch({ type: SET_USER, user: data.user })
+				dispatch({ type: SET_ROLE, role: data.user.role })
 			})
 		}
 	}
@@ -79,37 +81,16 @@ function App () {
 		<Header />
 		<main>
 		<Switch>
+			<Route path="/login" render={(routerProps) => <LoginContainer { ...routerProps }/> } />
 
-			<Route 
-				path="/login" 
-				render={(routerProps) => <LoginContainer { ...routerProps }/> } 
-			/>
+			<Route path="/verifycert/:hash" render={ (routerProps) => <CertificationsContainer  {...routerProps } /> } />
 
-			<Route 
-				path="/verifycert/:hash" 
-				render={ 
-					(routerProps) => <CertificationsContainer  {...routerProps } /> 
-				}
-			/>
+			<Route path="/about" render={ () => <About /> } />
 
-			<Route
-				path="/about"
-				render={ () => <About /> }
-			/>
+			<PrivateRoute path="/certQR" component={ QRcode } />
 
-			<PrivateRoute 
-				path="/certQR" 
-				component={ QRcode }
-			/>
-
-			{/* <PrivateRoute 
-				path="/addcert" 
-				component={ AddCertForm }
-				gym_id={ this.state.user.id } 
-				addCertToState={ this.addCertToState }
-			/> 
-
-			<PrivateRoute
+			<PrivateRoute path="/addcert" component={ AddCertForm } /> 
+			{/* <PrivateRoute
 				path="/" 
 				component={ Profile }
 				updateSearchTerm={ this.updateSearchTerm }
@@ -120,16 +101,11 @@ function App () {
 				setAppUser={ this.setAppUser } 
 				role={ this.state.role } 
 				setRole={ this.setRole } 
-			/> */}
-			
-			<Redirect to="/" />
-
+			/>
+			<Redirect to="/" /> */}
 		</Switch>
-		{
-			this.state.user.id
-			? <button className="logout-button" onClick={ logOut }>LOG OUT</button>
-			: null
-		}
+
+		{ user.id ? <button className="logout-button" onClick={ logOut }>LOG OUT</button> : null }
 		</main>
 		<Footer	/>
 	</div>

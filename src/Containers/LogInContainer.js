@@ -8,10 +8,7 @@ function LoginContainer ({ ...routerProps }) {
 
     return(
         <section>
-            {role
-            ? <LoginForm { ...routerProps }/>
-            : <LogInButtonSection />
-            }
+            { role ? <LoginForm { ...routerProps }/> : <LogInButtonSection /> }
         </section>
     )
 }

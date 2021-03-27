@@ -1,7 +1,8 @@
+import { SET_USER } from '../Types'
 
 const user = (state={}, action) => {
 	switch(action.type) {
-		case "SET_USER":
+		case SET_USER:
 			return action.user
 		default:
 			return state
