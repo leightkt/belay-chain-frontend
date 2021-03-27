@@ -1,6 +1,8 @@
 import './Profile.css'
 import CertificationsContainer from './CertificationsContainer'
 import { Component } from 'react'
+import { connect } from 'react-redux'
+import { SET_USER, SET_ROLE, UPDATE_SEARCHTERM } from '../Redux/Types'
 import Climber from '../Assets/climber.jpg'
 import Search from '../Components/Search'
 import AdminActivities from './AdminActivities'
@@ -81,12 +83,13 @@ class Profile extends Component {
     }
 
     toggleEdit = () => {
-        this.setState({ editProfile: !this.state.editProfile })
-        this.setState({ errors: "" })
+        this.setState({ 
+            editProfile: !this.state.editProfile, 
+            errors: ""
+        })
     }
 
     userUpdate = () => {
-        console.log("hit")
         const userdata = {}
         for (let key in this.state){
             if(key !== "editProfile") {
@@ -113,7 +116,7 @@ class Profile extends Component {
                     if (data.errors) {
                         this.setState({ errors: data.errors[0] })
                     } else {
-                        this.props.setAppUser(data.user)
+                        this.props.setUser(data.user)
                         this.setState({ errors: "" })
                     }
                 })
@@ -160,7 +163,7 @@ class Profile extends Component {
                     this.setState({ errors: data.errors[0] })
                 } else {
                     this.setState({ errors: "" })
-                    this.props.setAppUser({})
+                    this.props.setUser({})
                     this.props.setRole("")
                     localStorage.removeItem('token')
                 }
@@ -172,7 +175,7 @@ class Profile extends Component {
     }
 
     render(){
-        const { role, updateSearchTerm, searchTerm, displayedCerts, user } = this.props
+        const { role, searchTerm, certifications } = this.props
         
         return(
             <>
@@ -185,7 +188,7 @@ class Profile extends Component {
                                 <button onClick={ this.toggleConfirmDelete }>CANCEL</button>
                             </>
                             : <>
-                                { !user.first_name && role === "member" ? <p className="first-time-user">First time here? Click edit to update your information and reset your password.</p> : null }
+                                { !this.state.first_name && role === "member" ? <p className="first-time-user">First time here? Click edit to update your information and reset your password.</p> : null }
                                 <form className="update">
                                     { this.displayUser() }
                                     {this.state.editProfile
@@ -210,7 +213,7 @@ class Profile extends Component {
                         }
                 </section>
                 { role === "gym" 
-                    ? <Search updateSearchTerm={ updateSearchTerm} searchTerm={ searchTerm }/>
+                    ? <Search updateSearchTerm={ updateSearchTerm } searchTerm={ searchTerm }/>
                     : null 
                 }
                 { role === "admin"
@@ -223,4 +226,19 @@ class Profile extends Component {
     
 }
 
-export default Profile
+const mapStateToProps = (state) => {
+    return {
+        role: state.role,
+        user: state.user,
+        certifications: state.certifications
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setUser: (user) => dispatch({ type: SET_USER, user }),
+        setRole: (role) => dispatch({ type: SET_ROLE, role })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)

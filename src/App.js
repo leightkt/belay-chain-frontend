@@ -21,7 +21,6 @@ const backendUsersURL = 'http://localhost:9000/'
 function App () {
 	const dispatch = useDispatch()
 	const certifications = useSelector(state => state.certifications)
-	const searchTerm = useSelector(state => state.searchTerm)
 	const user = useSelector(state => state.user)
 
 	const authoriz_user = () => {
@@ -53,17 +52,6 @@ function App () {
 		})
 	}
 
-	const addCertToState = (newCert) => {
-		const certifications = this.state.certifications.filter(certification => certification.index !== newCert.index)
-		this.setState({ certifications: [...certifications, newCert]})
-	}
-
-	const updateSearchTerm = (event) => {
-		this.setState({
-			searchTerm: event.target.value
-		})
-	}
-
 	const displayedCerts = () => {
 		return certifications.filter(certification => {
 			if (!searchTerm) {
@@ -90,21 +78,12 @@ function App () {
 			<PrivateRoute path="/certQR" component={ QRcode } />
 
 			<PrivateRoute path="/addcert" component={ AddCertForm } /> 
-			{/* <PrivateRoute
-				path="/" 
-				component={ Profile }
-				updateSearchTerm={ this.updateSearchTerm }
-				searchTerm={ this.state.searchTerm }
-				user={ this.state.user } 
-				certifications={ this.state.certifications } 
-				displayedCerts = { this.displayedCerts }
-				setAppUser={ this.setAppUser } 
-				role={ this.state.role } 
-				setRole={ this.setRole } 
-			/>
-			<Redirect to="/" /> */}
-		</Switch>
 
+			<PrivateRoute path="/" component={ Profile } />
+
+			<Redirect to="/" />
+
+		</Switch>
 		{ user.id ? <button className="logout-button" onClick={ logOut }>LOG OUT</button> : null }
 		</main>
 		<Footer	/>
