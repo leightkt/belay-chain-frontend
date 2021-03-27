@@ -85,13 +85,14 @@ function App () {
 				render={(routerProps) => <LoginContainer { ...routerProps }/> } 
 			/>
 
-			{/* <Route 
+			<Route 
 				path="/verifycert/:hash" 
 				render={ 
 					(routerProps) => <CertificationsContainer  {...routerProps } /> 
 				}
 			/>
-			<Route
+			
+			{/* <Route
 				path="/about"
 				render={ () => <About /> }
 			/>

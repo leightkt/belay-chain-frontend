@@ -2,10 +2,13 @@ import CertCard from '../Components/CertCard'
 import './CertificationsContainer.css'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const backendUsersURL = 'http://localhost:9000/'
 
-function CertificationsContainer ({ certifications, role, match }) {
+function CertificationsContainer ({ match }) {
+    const certifications = useSelector(state => state.certifications)
+    const role = useSelector(state => state.role )
     const [ certs, setCerts ] = useState([])
     const [ loaded, setLoad ] = useState(false)
     const [ errors, setErrors ] = useState("")

@@ -134,4 +134,5 @@ const mapDispatchToProps = (dispatch) => {
         setUser: (user) => dispatch({ type: "SET_USER", user })
     }
 }
+
 export default connect(null, mapDispatchToProps)(SignUpForm)
