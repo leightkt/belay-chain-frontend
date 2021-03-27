@@ -172,7 +172,7 @@ class Profile extends Component {
     }
 
     render(){
-        const { role, updateSearchTerm, searchTerm, displayedCerts } = this.props
+        const { role, updateSearchTerm, searchTerm, displayedCerts, user } = this.props
         
         return(
             <>
@@ -185,7 +185,7 @@ class Profile extends Component {
                                 <button onClick={ this.toggleConfirmDelete }>CANCEL</button>
                             </>
                             : <>
-                                { !this.state.first_name && role === "member" ? <p>First time here? Click edit to update your information and reset your password.</p> : null }
+                                { !user.first_name && role === "member" ? <p className="first-time-user">First time here? Click edit to update your information and reset your password.</p> : null }
                                 <form className="update">
                                     { this.displayUser() }
                                     {this.state.editProfile
