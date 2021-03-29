@@ -4,7 +4,6 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    /* max-width: 20rem; */
     justify-self: flex-start;
 }
 
@@ -21,40 +20,12 @@
     color: rgba(31,123,190,255);
     font-size: 1.25rem;
     font-weight: bold;
+    justify-self: flex-end;
+    align-self: flex-end;
+    max-width: 15rem;
+    margin-left: 2rem;
 }
 
-.update > p {
-    margin: 0.5rem 0.2rem;
-}
-
-.update > div > button {
-    height: 2rem;
-    width: 5rem;
-    justify-self: flex-start;
-    margin: 1rem 2rem;
-}
-
-.update > button {
-    height: 2rem;
-    width: 5rem;
-    justify-self: flex-start;
-    margin: 2rem;
-}
-
-.update > input {
-    width: 15rem;
-}
-
-.update {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: 25rem;
-    font-size: 1.5rem;
-    margin-left: 4rem;
-    justify-content: flex-start;
-    align-items: space-around;
-}
 
 .update-div {
     margin-top: 13rem;

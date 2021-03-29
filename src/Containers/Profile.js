@@ -2,7 +2,7 @@ import './Profile.css'
 import CertificationsContainer from './CertificationsContainer'
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import { SET_USER, SET_ROLE } from '../Redux/Types'
+import { SET_USER } from '../Redux/Types'
 import Climber from '../Assets/climber.jpg'
 import Search from '../Components/Search'
 import AdminActivities from './AdminActivities'
@@ -14,7 +14,8 @@ const backendUsersURL = 'http://localhost:9000/'
 class Profile extends Component {
     state = {
         editProfile: false,
-        confirmDelete: false
+        confirmDelete: false,
+        errors: ""
     }
 
     componentDidMount() {
@@ -25,6 +26,10 @@ class Profile extends Component {
         for (let key in user) {
             this.setState({ [`${key}`]: user[key] })
         }
+    }
+
+    setErrors = (errors) => {
+        this.setState({ errors })
     }
 
     displayUser = () => {
@@ -148,30 +153,6 @@ class Profile extends Component {
         this.toggleConfirmDelete()
     }
 
-    deleteAccount = () => {
-
-        const roleURL = this.setroleURL()
-        fetch(`${backendUsersURL}${roleURL}/${this.props.user.id}`, {
-            method: "DELETE",
-            headers: {
-                Accept: "application/json",
-                "Content-type": "application/json",
-                "Authorization": `Bearer: ${localStorage.token}`
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.errors) {
-                    this.setState({ errors: data.errors[0] })
-                } else {
-                    this.setState({ errors: "" })
-                    this.props.setUser({})
-                    this.props.setRole("")
-                    localStorage.removeItem('token')
-                }
-            })
-    }
-
     toggleConfirmDelete = () => {
         this.setState({ confirmDelete: !this.state.confirmDelete })
     }
@@ -187,7 +168,13 @@ class Profile extends Component {
 
                         { this.state.confirmDelete
                             ? 
-                                <DeleteAccount deleteAccount={ this.deleteAccount } toggleConfirmDelete={ this.toggleConfirmDelete }/>
+                                <DeleteAccount 
+                                    deleteAccount={ this.deleteAccount } 
+                                    toggleConfirmDelete={ this.toggleConfirmDelete } 
+                                    setroleURL={ this.setroleURL }
+                                    setErrors={ this.setErrors }
+                                    routerProps={ this.props.routerProps }
+                                />
                             : 
                                 <>
                                     { !this.props.user.first_name && role === "member" 
@@ -206,7 +193,10 @@ class Profile extends Component {
                                         errors={ this.state.errors }/>
                                 </>
                         }
-
+                    { this.state.errors
+                        ? <p className="errors">{ this.state.errors }</p>
+                        : null
+                    }
                 </section>
 
                 { role === "gym" 
@@ -236,8 +226,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setUser: (user) => dispatch({ type: SET_USER, user }),
-        setRole: (role) => dispatch({ type: SET_ROLE, role })
+        setUser: (user) => dispatch({ type: SET_USER, user })
     }
 }
 

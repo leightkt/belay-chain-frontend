@@ -4,7 +4,7 @@ import { Component } from 'react'
 class UpdateForm extends Component {
 
     render(){
-        const { editProfile, displayUser, password, handleChange, userUpdate, toggleEdit, askforDeleteConfirmation, errors } = this.props
+        const { editProfile, displayUser, password, handleChange, userUpdate, toggleEdit, askforDeleteConfirmation } = this.props
         return(
             <form className="update">
                 
@@ -24,11 +24,6 @@ class UpdateForm extends Component {
                         </>
                     : 
                         <button class="edit" onClick={ toggleEdit }>EDIT</button>
-                }
-
-                { errors
-                    ? <p className="errors">{ errors }</p>
-                    : null
                 }
 
             </form>
