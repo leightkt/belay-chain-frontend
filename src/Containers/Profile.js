@@ -169,7 +169,6 @@ class Profile extends Component {
                         { this.state.confirmDelete
                             ? 
                                 <DeleteAccount 
-                                    deleteAccount={ this.deleteAccount } 
                                     toggleConfirmDelete={ this.toggleConfirmDelete } 
                                     setroleURL={ this.setroleURL }
                                     setErrors={ this.setErrors }
