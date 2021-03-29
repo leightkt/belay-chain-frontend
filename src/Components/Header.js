@@ -1,6 +1,7 @@
 import './Header.css'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import Logo from '../Assets/belay-chain-logo.png'
 
 function Header () {
     const role = useSelector(state => state.role)
@@ -8,8 +9,9 @@ function Header () {
 
     return(
         <header>
-            <h1>BelayChain</h1>
-            <p>Certified Catches</p>
+            {/* <h1>BelayChain</h1> */}
+            <img className="logo" src={ Logo } alt="a chain of belay devices" />
+            <p className="hide-on-small">Certified Catches</p>
             <Link className="about-link" to="about" >ABOUT</Link>
 
             { role === "gym" && userID

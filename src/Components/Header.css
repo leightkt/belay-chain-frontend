@@ -2,18 +2,19 @@ header {
     height: 12rem;
     margin: 0;
     padding: 2rem;
-    /* border-bottom: 1px solid rgba(233,112,3,255); */
     background-image: linear-gradient(to left, rgba(233,112,3), rgb(254, 192, 90));
 }
 
-h1 {
-    font-family: 'Major Mono Display', monospace;
-    font-size: 4rem;
+.logo {
+    width: 22rem;
     margin: 0;
 }
 
 header > p {
     font-family: 'Major Mono Display', monospace;
+    position: absolute;
+    top: 10rem;
+    left: 15em;
 }
 
 .add-cert {
@@ -42,6 +43,7 @@ header > p {
     font-size: 1.25rem;
     box-shadow: 0px 0px 10px 2px rgba(22, 20, 17, 0.246);
     position: absolute;
-    top: 10rem;
+    top: 11.5rem;
+    left: 2rem;
     border-radius: 0.5rem;
 }
