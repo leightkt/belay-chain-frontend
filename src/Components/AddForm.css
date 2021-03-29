@@ -1,0 +1,14 @@
+.add-cert-form {
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-cert-form > select {
+    margin: 4rem 2rem;
+    border: none;
+    width: 12rem;
+    height: 2rem;
+    font-size: 1.5rem;
+    font-family: 'Rajdhani', sans-serif;
+}

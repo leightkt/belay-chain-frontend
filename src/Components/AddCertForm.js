@@ -3,6 +3,8 @@ import { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { ADD_CERTIFICATION } from '../Redux/Types'
+import SearchForm from './SearchForm'
+import AddForm from './AddForm'
 const backendUsersURL = 'http://localhost:9000/'
 
 class AddCertForm extends Component {
@@ -115,31 +117,21 @@ class AddCertForm extends Component {
         return(
             <>
             <section className="add-or-lookup">
-                <form className="add-cert-form" onSubmit={ this.addCertification }>
-                    <h2>Add Belay Certificaiton</h2>
-                    <label>Member ID:</label>
-                    <input type="text" name="member_id" placeholder="MEMBER ID" value={ this.state.member_id } onChange={ this.handleChange } required/>
-                    <label>Email:</label>
-                    <input type="email" name="email" placeholder="EMAIL" onChange={ this.handleChange } value={ this.state.email } required/>
-                    <label>Certification Type:</label>
-                    <select name="cert_type" onChange={ this.handleChange } value={ this.state.cert_type } required>
-                        <option>Top Rope</option>
-                        <option>Lead</option>
-                        <option>Revoke Previous Certification</option>
-                    </select>
-                    <input type="submit" value="ON BELAY" />
-                </form>
-                <form className="lookup" onSubmit={ this.findUser }>
-                    <h2>Look Up User</h2>
-                    <label>Email:</label>
-                    <input type="email" name="email" placeholder="EMAIL" onChange={ this.handleChange } value={ this.state.email }/>
-                    <label>First Name:</label>
-                    <input type="text" name="first_name" placeholder="FIRST NAME" onChange={ this.handleChange } value={ this.state.first_name }/>
-                    <label>Last Name:</label>
-                    <input type="text" name="last_name" placeholder="LAST NAME" onChange={ this.handleChange } value={ this.state.last_name }/>
-                    <input type="submit" value="FIND MEMBER" />
-                    { this.state.errors ? <p className="errors">{ this.state.errors }</p> : null }
-                </form>
+                <AddForm 
+                    addCertification={ this.addCertification }
+                    member_id={ this.state.member_id }
+                    email={ this.state.email }
+                    cert_type={ this.state.cert_type }
+                    handleChange={ this.state.handleChange }
+                />
+                <SearchForm 
+                    handleChange={ this.handleChange } 
+                    email={ this.state.email }
+                    first_name={ this.state.first_name }
+                    last_name={ this.state.last_name }
+                    findUser={ this.findUser }
+                />
+                { this.state.errors ? <p className="errors">{ this.state.errors }</p> : null }
             </section>
             <Link className="back-link" to="/">BACK</Link>
             </>

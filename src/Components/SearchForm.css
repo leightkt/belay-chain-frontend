@@ -1,0 +1,11 @@
+.lookup {
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.lookup > p {
+    color: rgba(233,112,3,255);
+    font-size: 1.25rem;
+    font-weight: bold;
+}
