@@ -18,10 +18,10 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        this.setUser(this.props.user)
+        this.setProfileUser(this.props.user)
     }
 
-    setUser = (user) => {
+    setProfileUser = (user) => {
         for (let key in user) {
             this.setState({ [`${key}`]: user[key] })
         }
@@ -118,6 +118,7 @@ class Profile extends Component {
                     if (data.errors) {
                         this.setState({ errors: data.errors[0] })
                     } else {
+                        console.log(data.user)
                         this.props.setUser(data.user)
                         this.setState({ errors: "" })
                     }

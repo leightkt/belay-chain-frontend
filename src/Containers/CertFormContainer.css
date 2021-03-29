@@ -22,3 +22,9 @@
     border-bottom: none;
     background-color: rgba(31,123,190,255);
 }
+
+.cert-errors {
+    margin-top: 5rem;
+    margin-left: 3rem;
+    font-size: 1.5rem;
+}

@@ -29,6 +29,7 @@ class CertFormContainer extends Component {
     render(){
         return(
             <>
+            { this.state.errors ? <p className="errors cert-errors">{ this.state.errors }</p> : null }
             <section className="add-or-lookup">
                 <AddForm 
                     member_id={ this.state.member_id }
@@ -43,7 +44,6 @@ class CertFormContainer extends Component {
                     setErrors={ this.setErrors }
                     setMemberId={ this.setMemberId }
                 />
-                { this.state.errors ? <p className="errors">{ this.state.errors }</p> : null }
             </section>
             <Link className="back-link" to="/">BACK</Link>
             </>

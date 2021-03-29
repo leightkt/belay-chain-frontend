@@ -70,7 +70,7 @@ function CertificationsContainer ({ match }) {
     return(
         <div className="cert-wrapper">
             <section className="cert-container">
-                { loaded && certs ? displayCertifications(certs) : displayCertifications(displayedCerts(certifications)) }
+                { loaded && certs.length > 0 ? displayCertifications(certs) : displayCertifications(displayedCerts(certifications)) }
             </section>
 
             { errors || message 

@@ -1,5 +1,5 @@
 .lookup {
-    margin: 2rem;
+    margin: 0 2rem 2rem 2rem;
     display: flex;
     flex-direction: column;
 }
@@ -8,4 +8,8 @@
     color: rgba(233,112,3,255);
     font-size: 1.25rem;
     font-weight: bold;
+}
+
+.lookup > h2 {
+    font-family: 'Rajdhani', sans-serif;
 }

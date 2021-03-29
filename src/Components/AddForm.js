@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { ADD_CERTIFICATION } from '../Redux/Types'
 const backendUsersURL = 'http://localhost:9000/'
 
-function AddForm ({ member_id, email, setMainEmail, setMemberId, setErrors, ...routerProps }) {
+function AddForm ({ member_id, email, setMainEmail, setMemberId, setErrors, routerProps }) {
     const dispatch = useDispatch()
     const [cert_type, setCert_type] = useState("Top Rope")
     const gym_id = useSelector(state => state.user.id)
@@ -53,7 +53,7 @@ function AddForm ({ member_id, email, setMainEmail, setMemberId, setErrors, ...r
                 setMemberId("")
                 setMainEmail("")
             } else {
-                dispatch({ type: ADD_CERTIFICATION, result })
+                dispatch({ type: ADD_CERTIFICATION, certification: result })
                 routerProps.history.push('/')
             }
             
