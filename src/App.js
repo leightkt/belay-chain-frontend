@@ -9,7 +9,7 @@ import Header from './Components/Header';
 import Footer from './Components/Footer';
 import Profile from './Containers/Profile';
 import LoginContainer from './Containers/LogInContainer';
-import AddCertForm from './Components/AddCertForm'
+import CertFormContainer from './Containers/CertFormContainer'
 import CertificationsContainer from './Containers/CertificationsContainer';
 import QRcode from './Components/QRcode';
 import PrivateRoute from './Components/PrivateRoute'
@@ -62,7 +62,7 @@ function App () {
 
 				<PrivateRoute path="/certQR" component={ QRcode } />
 
-				<PrivateRoute path="/addcert" component={ AddCertForm } /> 
+				<PrivateRoute path="/addcert" component={ CertFormContainer } /> 
 
 				<PrivateRoute path="/" component={ Profile } />
 
