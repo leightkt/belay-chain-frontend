@@ -2,7 +2,7 @@ import './Profile.css'
 import CertificationsContainer from './CertificationsContainer'
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import { SET_USER, SET_ROLE, UPDATE_SEARCHTERM } from '../Redux/Types'
+import { SET_USER, SET_ROLE } from '../Redux/Types'
 import Climber from '../Assets/climber.jpg'
 import Search from '../Components/Search'
 import AdminActivities from './AdminActivities'
@@ -102,7 +102,7 @@ class Profile extends Component {
         const roleURL = this.setroleURL()
 
         if(this.state.editProfile === true){
-            fetch(`${backendUsersURL}${roleURL}/${this.state.id}`, {
+            fetch(`${backendUsersURL}${roleURL}/${this.props.user.id}`, {
                 method: "PATCH",
                 headers: {
                     Accept: "application/json",
@@ -151,7 +151,7 @@ class Profile extends Component {
     deleteAccount = () => {
 
         const roleURL = this.setroleURL()
-        fetch(`${backendUsersURL}${roleURL}/${this.state.id}`, {
+        fetch(`${backendUsersURL}${roleURL}/${this.props.user.id}`, {
             method: "DELETE",
             headers: {
                 Accept: "application/json",

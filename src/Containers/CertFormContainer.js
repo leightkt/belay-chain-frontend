@@ -31,7 +31,6 @@ class CertFormContainer extends Component {
             <>
             <section className="add-or-lookup">
                 <AddForm 
-                    addCertification={ this.addCertification }
                     member_id={ this.state.member_id }
                     email={ this.state.email }
                     setMainEmail={ this.setMainEmail }

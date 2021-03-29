@@ -6,7 +6,7 @@ const backendNodeURL = 'http://localhost:3001'
 
 function AdminActivities () {
     const [ nodes, setNodes ] = useState([])
-    const [ currentNode, setcurrentNode ] = useState(backendNodeURL)
+    const [ currentNode ] = useState(backendNodeURL)
     const [ message, setMessage ] = useState("")
 
     useEffect(() => {

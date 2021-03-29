@@ -1,7 +1,6 @@
 import './LoginForm.css'
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import SignUpForm from './SignUpForm'
 import { SET_USER, SET_ROLE, SET_CERTIFICATIONS } from '../Redux/Types'
 const backendUsersURL = 'http://localhost:9000/'
 
