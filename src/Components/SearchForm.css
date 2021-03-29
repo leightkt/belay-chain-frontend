@@ -13,3 +13,7 @@
 .lookup > h2 {
     font-family: 'Rajdhani', sans-serif;
 }
+
+.lookup > input {
+    margin-left: 0;
+}

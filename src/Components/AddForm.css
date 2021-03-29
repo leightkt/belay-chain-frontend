@@ -16,3 +16,11 @@
 .add-cert-form > h2 {
     font-family: 'Rajdhani', sans-serif;
 }
+
+.add-cert-form > input {
+    margin-left: 0;
+}
+
+.add-cert-form > select {
+    margin-left: 0;
+}

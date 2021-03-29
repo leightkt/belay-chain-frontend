@@ -94,8 +94,8 @@ class Profile extends Component {
     userUpdate = () => {
         const userdata = {}
         for (let key in this.state){
-            if(key !== "editProfile") {
-                userdata[`${key}`] =  this.state[key]
+            if(key !== "editProfile" && key !== "confirmDelete" && key !== "errors" && key !== "role") {
+                    userdata[`${key}`] =  this.state[key]
             }
         }
 
@@ -118,7 +118,6 @@ class Profile extends Component {
                     if (data.errors) {
                         this.setState({ errors: data.errors[0] })
                     } else {
-                        console.log(data.user)
                         this.props.setUser(data.user)
                         this.setState({ errors: "" })
                     }

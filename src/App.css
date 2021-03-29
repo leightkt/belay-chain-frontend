@@ -154,15 +154,27 @@ input[type="submit"] {
     .update {
         height: auto !important;
         max-width: none !important;
-        margin-left: 2rem !important;
+        margin-left: 1rem !important;
+    }
+
+    .update > input {
+        margin-left: 0;
     }
 
     .update > button {
         margin: 0 !important;
     }
 
+    .update-div {
+        align-items: flex-start !important;
+    }
+
+    .update-div > button {
+        margin-left: 0rem !important;
+    }
+
     .search-form > input {
-        margin: 3rem !important;
+        margin: 2rem !important;
     }
 
     .cert-container {
@@ -228,6 +240,10 @@ input[type="submit"] {
     .verify-message {
         margin-left: 2rem !important;
         align-self: flex-start !important;
+    }
+
+    .delete-account > p {
+        margin-left: 1rem;
     }
 
 
