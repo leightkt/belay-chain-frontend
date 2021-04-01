@@ -2,18 +2,13 @@
     width: 25rem;
     height: 25rem;
     box-shadow: 0px 0px 10px 2px rgba(255, 166, 0, 0.246);
-    text-align: center;
+    text-align: left;
     border-radius: 2rem;
     margin: 1rem;
     font-size: 1.25rem;
-    padding: 1rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-}
-
-.cert-card > p {
-    margin: 0.5rem;
-    font-size: 1.5rem;
 }
 
 .view-cert {
@@ -32,5 +27,25 @@
 .icon {
     width: 4rem;
     margin: 0.5rem;
-    position: absolute;
+    align-self: flex-end;
+}
+
+.important {
+    font-size: 2.35rem;
+    margin: 0.75rem;
+}
+
+.less-important {
+    font-size: 1.25rem;
+    margin: 0.75rem;
+    color:rgb(95, 91, 85)
+}
+
+.cert-text-box {
+    margin-top: -3.5rem;
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }

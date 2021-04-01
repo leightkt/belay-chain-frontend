@@ -25,33 +25,34 @@ function CertCard ({ cert, role }) {
     return (
         <div className="cert-card" >
             <img src={ findIcon() } alt="climbing icon" className="icon"/>
-            <p>{ `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}` }</p>
-            
-            { role === "gym" || role === "verify"
-                ?   
-                    <>
-                        <p>{ cert.data.user_member_number }</p>
-                        <p>{ cert.first_name }</p>
-                        <p>{ cert.last_name }</p>
-                        <p>{ cert.email }</p>
-                    </>
-                : 
-                    <p>{ cert.gym }</p>
-            }
+            <div className="cert-text-box">
+                <p className="less-important">{ `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}` }</p>
+                
+                { role === "gym" || role === "verify"
+                    ?   
+                        <>
+                            <p className="less-important">{ cert.data.user_member_number }</p>
+                            <p className="important">{ cert.first_name } { cert.last_name }</p>
+                            {/* <p className="important">{ cert.last_name }</p> */}
+                            <p className="less-important">{ cert.email }</p>
+                        </>
+                    : 
+                        <p className="important">{ cert.gym }</p>
+                }
 
-            <p>{ cert.data.cert_type }</p>
-            
-            { role === "verify" 
-                ? 
-                    <p>{ cert.gym }</p> 
-                : 
-                    <Link 
-                        to={{ pathname: '/certQR', state: { hash: cert.hash } }} 
-                        className="view-cert" >
-                    View Certification
-                    </Link> 
-            }
-            
+                <p className="important">{ cert.data.cert_type }</p>
+                
+                { role === "verify" 
+                    ? 
+                        <p className="important">{ cert.gym }</p> 
+                    : 
+                        <Link 
+                            to={{ pathname: '/certQR', state: { hash: cert.hash } }} 
+                            className="view-cert" >
+                        View Certification
+                        </Link> 
+                }
+            </div>
         </div>
     )
 }
