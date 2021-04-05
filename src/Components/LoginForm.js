@@ -41,16 +41,18 @@ class LoginForm extends Component {
         if (this.state.role === "admin") {
             data = {
                 username: this.state.username,
-                password: this.state.password
+                password: this.state.password,
+                role: this.state.role
             }
         } else {
             data = {
                 email: this.state.email,
-                password: this.state.password
+                password: this.state.password,
+                role: this.state.role
             }
         }
 
-		fetch(`${backendUsersURL}${this.state.role}login`, {
+		fetch(`${backendUsersURL}login`, {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
