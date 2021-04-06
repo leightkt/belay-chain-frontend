@@ -32,10 +32,16 @@ class AddANode extends Component {
         })
             .then(response => response.json())
             .then(result => {
-                this.setState({
+                if(result.errors){
+                    this.setState({ message: result.errors })
+                } else {
+                    this.props.addNode(this.state.url)
+                    this.setState({
                     message: result.message,
                     url: ""
-                })
+                    })
+                }
+                
             })
     }
 

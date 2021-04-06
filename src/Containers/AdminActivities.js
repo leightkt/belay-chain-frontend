@@ -90,11 +90,15 @@ function AdminActivities () {
         })
     }
 
+    const addNode = (nodeURL) => {
+        setNodes([...nodes, nodeURL])
+    }
+
     return (
         <section className="admin-section">
             { message ? <p className="errors admin-message">{ message }</p> : null }
             <div className="nodes" onClick={ handleClick } >{ currentNode ? displayNodes() : null }</div>
-            <AddANode />
+            <AddANode addNode={ addNode }/>
         </section>
     )
 }
